@@ -1,9 +1,9 @@
-<!--  ADD, EDIT FORM 입니다 -->
+<!-- TransactionForm.vue -->
 
 <template>
   <h2>{{ isEdit ? '내역 수정하기' : '내역 추가하기' }}</h2>
-  <p>Transcation Detail</p>
-  <!--  날짜 달력으로 사라락 -->
+  <p>Transaction Detail</p>
+
   <div class="form-group">
     <label>날짜</label>
     <input type="date" v-model="form.date" required />
@@ -14,7 +14,6 @@
     <input type="number" v-model="form.amount" required />
   </div>
 
-  <!-- 거래 유형이 카테고리보다 위에 있어야함 -->
   <div class="form-group">
     <label>거래 유형</label>
     <select v-model="form.type">
@@ -59,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCategoryStore } from '@/stores/categoryStore';
 import { useTransactionStore } from '@/stores/transactionStore';
@@ -72,18 +71,22 @@ const props = defineProps({
   isEdit: Boolean,
   form: Object,
 });
-//마운트하면서 카테고리 불러옴
+
 onMounted(() => {
   categoryStore.fetchCategories();
 });
 
-const filteredCategories = computed(() => {
-  return categoryStore.getCategoryByType(props.form.type);
-});
+const filteredCategories = computed(() =>
+  categoryStore.getCategoryByType(props.form.type)
+);
 
-//수정하기 추가하기
+// 추가 or 수정
 const onSubmit = async () => {
   if (props.isEdit) {
+    if (!props.form.id) {
+      console.error('수정인데 form.id가 없습니다!', props.form);
+      return;
+    }
     await transactionStore.updateTransaction(props.form);
   } else {
     await transactionStore.addTransaction(props.form);
@@ -92,25 +95,18 @@ const onSubmit = async () => {
   router.push('/transaction');
 };
 
-//삭제하기 -> 목록페이지
+// 삭제
 const onDelete = async () => {
+  if (!props.form.id) {
+    console.error('삭제하려는 거래에 id가 없습니다!', props.form);
+    return;
+  }
   await transactionStore.deleteTransaction(props.form.id);
   router.push('/transaction');
 };
+
 // 뒤로가기
 const goBack = () => {
   router.back();
 };
-
-// import { ref } from 'vue';
-
-// const isEdit = ref(false);
-// const form = ref({
-//   date: '',
-//   amount: 0,
-//   type: 'income',
-//   category: '공과금',
-//   isPeriodic: false,
-//   memo: 'ㅎㅇㅎㅇ',
-// });
 </script>

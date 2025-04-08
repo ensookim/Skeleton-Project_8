@@ -12,6 +12,8 @@ export const useCategoryStore = defineStore('categoryStore', () => {
       const incomeReseponse = await axios.get(
         'http://localhost:3000/incomeCategory'
       );
+      // console.log(incomeReseponse);
+
       const expenseResponse = await axios.get(
         'http://localhost:3000/expenseCategory'
       );

@@ -33,12 +33,27 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   const updateTransaction = async (updateItem) => {
     try {
       await axios.put(
-        `http://localhost:3000/transaction/edid/${updateItem.id}`,
+        `http://localhost:3000/transaction/${updateItem.id}`,
         updateItem
       );
+      // console.log(updateItem, updateItem.id);
+
       const index = transactions.value.findIndex(
-        (target) => target.id === updateItem.id
+        (target) => String(target.id) === String(updateItem.id)
       );
+      // console.log(index);
+      // console.log(
+      //   '전체 거래 내역:',
+      //   transactions.value.map((t) => t.id)
+      // );
+      // console.log('수정할 아이디:', updateItem.id);
+      // console.log(
+      //   '찾은 인덱스:',
+      //   transactions.value.findIndex(
+      //     (t) => String(t.id) === String(updateItem.id)
+      //   )
+      // );
+
       if (index !== -1) {
         transactions.value[index] = updateItem;
       }
@@ -50,9 +65,9 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   // 삭제
   const deleteTransaction = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/transactions/${id}`);
-      transactions.value = transactions.value.filters(
-        (target) => target.id !== id
+      await axios.delete(`http://localhost:3000/transaction/${id}`);
+      transactions.value = transactions.value.filter(
+        (target) => String(target.id) !== String(id)
       );
     } catch (err) {
       console.log('거래 삭제에 실패했습니다. : ', err);

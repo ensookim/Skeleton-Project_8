@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/transaction/add',
       name: 'AddPage',
-      component: AddPage,
+      component: () => import('@/views/AddPage.vue'),
     },
     {
       path: '/transaction/edit/:id',
