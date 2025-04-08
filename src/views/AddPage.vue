@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <h1>거래 추가하기</h1>
+  </div>
 </template>
 
 <script setup></script>
