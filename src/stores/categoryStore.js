@@ -9,14 +9,8 @@ export const useCategoryStore = defineStore('categoryStore', () => {
   //카테고리 가져오기
   const fetchCategories = async () => {
     try {
-      const incomeReseponse = await axios.get(
-        'http://localhost:3000/incomeCategory'
-      );
-      // console.log(incomeReseponse);
-
-      const expenseResponse = await axios.get(
-        'http://localhost:3000/expenseCategory'
-      );
+      const incomeReseponse = await axios.get('/api/incomeCategory');
+      const expenseResponse = await axios.get('/api/expenseCategory');
       incomeCategory.value = incomeReseponse.data[0].name;
       expenseCategory.value = expenseResponse.data[0].name;
     } catch (error) {
