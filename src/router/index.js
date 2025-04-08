@@ -3,7 +3,7 @@ import HomePage from '@/views/HomePage.vue';
 import AddPage from '@/views/AddPage.vue';
 import EditPage from '@/views/EditPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
-import ProfileEdit from '@/views/ProfileEdit.vue';
+import ProfileEditPage from '@/views/ProfileEditPage.vue';
 import TransactionPage from '@/views/TransactionPage.vue';
 import TransactionDetailPage from '@/views/TransactionDetailPage.vue';
 import NotFound from '@/views/NotFound.vue';
@@ -43,8 +43,8 @@ const router = createRouter({
     },
     {
       path: '/user/edit/:id',
-      name: 'ProfileEdit',
-      component: ProfileEdit,
+      name: 'ProfileEditPage',
+      component: ProfileEditPage,
     },
     {
       path: '/:paths(.*)*',
