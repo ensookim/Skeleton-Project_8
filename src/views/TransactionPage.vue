@@ -1,6 +1,7 @@
 <template>
   <div>
     <span>전체 내역</span>
+    <button @click="goToAddPage">추가하기</button>
     <TransactionItem
       v-for="(trans, index) in paginationTransactions"
       :key="trans.id"
@@ -41,10 +42,13 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import TransactionItem from '@/components/TransactionItem.vue';
 import { useTransactionStore } from '@/stores/transactionStore';
 import { storeToRefs } from 'pinia';
 import { ref, computed } from 'vue';
+
+const router = useRouter();
 
 const store = useTransactionStore();
 store.fetchTransactions();
@@ -73,6 +77,10 @@ function goToPage(page) {
     currentPage.value = page;
   }
 }
+
+const goToAddPage = () => {
+  router.push('/transaction/add');
+};
 </script>
 
 <style scoped></style>
