@@ -1,7 +1,10 @@
 <template>
   <div></div>
+  <MonthlyReport />
 </template>
 
-<script setup></script>
+<script setup>
+import MonthlyReport from '@/components/MonthlyReport.vue';
+</script>
 
 <style scoped></style>
