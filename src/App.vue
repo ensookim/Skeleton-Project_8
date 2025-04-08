@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
-    <RouterView></RouterView>
-  </div>
+  <MonthlyReport />
+  <TransactionPage />
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router';
+import MonthlyReport from '@/components/MonthlyReport.vue';
+import TransactionPage from './views/TransactionPage.vue';
 </script>
 
 <style scoped></style>
