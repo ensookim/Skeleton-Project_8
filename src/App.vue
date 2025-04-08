@@ -1,6 +1,5 @@
 <template>
   <div>
-    <router-link :to="{ name: 'HomePage' }" class="mx-1">홈페이지</router-link>
     <router-link :to="{ name: 'TransactionPage' }" class="mx-1"
       >거래 내역</router-link
     >

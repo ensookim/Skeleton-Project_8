@@ -9,13 +9,25 @@
   "incomeCategory": [
     {
       "id": "1",
-      "name": ["기타", "용돈", "월급", "이자"]
+      "name": [
+        "기타",
+        "용돈",
+        "월급",
+        "이자"
+      ]
     }
   ],
   "expenseCategory": [
     {
       "id": "1",
-      "name": ["공과금", "교통비", "문화생활", "쇼핑", "식비", "정기구독"]
+      "name": [
+        "공과금",
+        "교통비",
+        "문화생활",
+        "쇼핑",
+        "식비",
+        "정기구독"
+      ]
     }
   ],
   "transaction": [
@@ -25,7 +37,7 @@
       "date": "2025-04-01",
       "type": "income",
       "category": "월급",
-      "amount": 3000000,
+      "amount": 2000000,
       "memo": "4월 급여",
       "isPeriodic": true
     },
@@ -218,16 +230,6 @@
       "amount": 9500,
       "memo": "점심 도시락",
       "isPeriodic": false
-    },
-    {
-      "id": "21",
-      "userId": "1",
-      "date": "2025-03-15",
-      "type": "income",
-      "category": "월급",
-      "amount": 5000000,
-      "memo": "3월 급여",
-      "isPeriodic": true
     }
   ]
 }
