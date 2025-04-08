@@ -23,7 +23,6 @@
     </select>
   </div>
 
-  <!-- 이부분 어려워요ㅠㅠ-->
   <div class="form-group">
     <label>카테고리</label>
     <select v-model="form.category">
@@ -51,41 +50,67 @@
   </div>
 
   <div class="button-group">
-    <button>{{ isEdit ? '수정하기' : '추가하기' }}</button>
+    <button @click="onSubmit">
+      {{ isEdit ? '수정하기' : '추가하기' }}
+    </button>
     <button v-if="isEdit" @click="onDelete">삭제하기</button>
+    <button @click="goBack">뒤로가기</button>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCategoryStore } from '@/stores/categoryStore';
+import { useTransactionStore } from '@/stores/transactionStore';
 
 const router = useRouter();
+const categoryStore = useCategoryStore();
+const transactionStore = useTransactionStore();
+
 const props = defineProps({
   isEdit: Boolean,
   form: Object,
 });
+//마운트하면서 카테고리 불러옴
+onMounted(() => {
+  categoryStore.fetchCategories();
+});
 
-const incomeCategory = categoryStore.incomeCategory;
-const expenseCategory = categoryStore.expenseCategory;
+const filteredCategories = computed(() => {
+  return categoryStore.getCategoryByType(props.form.type);
+});
 
-// 수입, 지출에 따른 카테고리 변화
-const filteredCategories = computed(() =>
-  props.form.type === 'income'
-    ? categoryStore.incomeCategory
-    : categoryStore.expenseCategory
-);
-
-// transactionStore.js 임포트해서 가져와야댐댐
-// const deleteTransaction = (id) => {
-//   transcationStore.deleteTransaction({ id });
-// };
-
-//추가하기 삭제하기
-const switchButton = async () => {
+//수정하기 추가하기
+const onSubmit = async () => {
   if (props.isEdit) {
     await transactionStore.updateTransaction(props.form);
+  } else {
+    await transactionStore.addTransaction(props.form);
   }
+
+  router.push('/transaction');
 };
+
+//삭제하기 -> 목록페이지
+const onDelete = async () => {
+  await transactionStore.deleteTransaction(props.form.id);
+  router.push('/transaction');
+};
+// 뒤로가기
+const goBack = () => {
+  router.back();
+};
+
+// import { ref } from 'vue';
+
+// const isEdit = ref(false);
+// const form = ref({
+//   date: '',
+//   amount: 0,
+//   type: 'income',
+//   category: '공과금',
+//   isPeriodic: false,
+//   memo: 'ㅎㅇㅎㅇ',
+// });
 </script>
