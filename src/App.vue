@@ -1,8 +1,10 @@
 <template>
   <div>
     <Header />
-    <MonthlyReport />
-    <TransactionPage />
+    <!-- <MonthlyReport />
+    <TransactionPage /> -->
+    <router-link :to="{ name: 'TransactionPage' }">홈페이지</router-link>
+    <router-view></router-view>
     <Footer />
   </div>
 </template>
@@ -10,8 +12,6 @@
 <script setup>
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import MonthlyReport from './components/MonthlyReport.vue';
-import TransactionPage from './views/TransactionPage.vue';
 </script>
 
 <style scoped></style>
