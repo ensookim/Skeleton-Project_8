@@ -30,7 +30,7 @@
           <button
             class="page-link"
             aria-label="Next"
-            @click="currentPage(page + 1)"
+            @click="goToPage(currentPage + 1)"
           >
             <span aria-hidden="true">&raquo;</span>
           </button>

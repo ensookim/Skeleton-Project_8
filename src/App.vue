@@ -1,10 +1,12 @@
 <template>
-  <MonthlyReport />
-  <TransactionPage />
+  <div>
+    <MonthlyReport />
+    <TransactionPage />
+  </div>
 </template>
 
 <script setup>
-import MonthlyReport from '@/components/MonthlyReport.vue';
+import MonthlyReport from './components/MonthlyReport.vue';
 import TransactionPage from './views/TransactionPage.vue';
 </script>
 
