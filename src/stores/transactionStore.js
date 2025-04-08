@@ -9,7 +9,7 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   //불러오기
   const fetchTransactions = async () => {
     try {
-      const reseponse = await axios.get('http://localhost:3000/transaction');
+      const reseponse = await axios.get('/api/transaction');
       transactions.value = reseponse.data;
     } catch (err) {
       console.error('거래 내역 불러오기에 실패했습니다. :', err);
@@ -19,10 +19,7 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   // 추가 post
   const addTransaction = async (newItem) => {
     try {
-      const reseponse = await axios.post(
-        'http://localhost:3000/transaction',
-        newItem
-      );
+      const reseponse = await axios.post('/api/transaction', newItem);
       transactions.value.push(reseponse.data);
     } catch (err) {
       console.error('추가하기에 실패했습니다. : ', err);
@@ -32,40 +29,17 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   // 수정은 put
   const updateTransaction = async (updateItem) => {
     try {
-      await axios.put(
-        `http://localhost:3000/transaction/${updateItem.id}`,
-        updateItem
-      );
-      // console.log(updateItem, updateItem.id);
-
-      const index = transactions.value.findIndex(
-        (target) => String(target.id) === String(updateItem.id)
-      );
-      // console.log(index);
-      // console.log(
-      //   '전체 거래 내역:',
-      //   transactions.value.map((t) => t.id)
-      // );
-      // console.log('수정할 아이디:', updateItem.id);
-      // console.log(
-      //   '찾은 인덱스:',
-      //   transactions.value.findIndex(
-      //     (t) => String(t.id) === String(updateItem.id)
-      //   )
-      // );
-
-      if (index !== -1) {
-        transactions.value[index] = updateItem;
-      }
+      await axios.put(`/api/transaction/${updateItem.id}`, updateItem);
+      await fetchTransactions();
     } catch (err) {
-      console.log('수정하기에 실패했습니다. : ');
+      console.log('수정하기에 실패했습니다. : ', err);
     }
   };
 
   // 삭제
   const deleteTransaction = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/transaction/${id}`);
+      await axios.delete(`/api/transaction/${id}`);
       transactions.value = transactions.value.filter(
         (target) => String(target.id) !== String(id)
       );
