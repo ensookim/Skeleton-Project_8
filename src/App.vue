@@ -1,7 +1,11 @@
 <template>
-  <div></div>
+  <div class="container">
+    <RouterView></RouterView>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { RouterView } from 'vue-router';
+</script>
 
 <style scoped></style>
