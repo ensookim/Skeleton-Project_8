@@ -112,35 +112,6 @@ export const useMonthlyStore = defineStore('monthly', () => {
     }
   };
 
-  //   const fetchIncome = async () => {
-  //     try {
-  //       const now = new Date();
-  //       const startOfMonth = new Date(
-  //         now.getFullYear(),
-  //         now.getMonth(),
-  //         1
-  //       ).toISOString();
-  //       const endOfMonth = new Date(
-  //         now.getFullYear(),
-  //         now.getMonth() + 1,
-  //         0
-  //       ).toISOString();
-
-  //       const response = await axios.get(
-  //         `/api/transaction?type=income&date_gte=${startOfMonth}&date_lte=${endOfMonth}`
-  //       );
-  //       console.log(response.data);
-  //       const incomeTotal = response.data.reduce(
-  //         (sum, item) => sum + item.amount,
-  //         0
-  //       );
-  //       income.value = incomeTotal;
-  //       console.log(income.value);
-  //     } catch (error) {
-  //       console.error('에러 발생:', error.message);
-  //     }
-  //   };
-
   return {
     lastExpense,
     currentExpense,
