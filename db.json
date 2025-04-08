@@ -6,7 +6,12 @@
       "email": "hong@example.com"
     }
   ],
-  "incomeCategory": [{ "id": "1", "name": ["기타", "용돈", "월급", "이자"] }],
+  "incomeCategory": [
+    {
+      "id": "1",
+      "name": ["기타", "용돈", "월급", "이자"]
+    }
+  ],
   "expenseCategory": [
     {
       "id": "1",

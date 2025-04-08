@@ -1,9 +1,17 @@
 <template>
-  <div>
-    <h1>거래 추가하기</h1>
-  </div>
+  <TransactionForm :isEdit="false" :form="form" />
 </template>
+<script setup>
+import { ref } from 'vue';
+import TransactionForm from '@/components/TransactionForm.vue';
 
-<script setup></script>
-
-<style scoped></style>
+//형식
+const form = ref({
+  date: '',
+  amount: 0,
+  type: 'income',
+  category: '',
+  isPeriodic: false,
+  memo: '',
+});
+</script>
