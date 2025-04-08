@@ -213,6 +213,16 @@
       "amount": 9500,
       "memo": "점심 도시락",
       "isPeriodic": false
+    },
+    {
+      "id": "21",
+      "userId": "1",
+      "date": "2025-03-15",
+      "type": "income",
+      "category": "월급",
+      "amount": 5000000,
+      "memo": "3월 급여",
+      "isPeriodic": true
     }
   ]
 }

@@ -1,57 +1,66 @@
 <template>
-  <div class="card rounded-4 d-flex flex-row">
+  <div class="card rounded-4 d-flex flex-row p-3 m-5">
     <!-- 이번 달 총 지출 -->
-    <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row rounded mx-2">
       <div>
-        <i class="fa-solid fa-minus"></i>
+        <i class="fa-solid fa-minus bg-danger rounded-circle p-1 me-2"></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 총 지출</h4>
-        <p class="card-text">{{ currentExpense }}</p>
+        <p class="card-text">: {{ formatCurrency(currentExpense) }}</p>
         <p>
-          전월 대비
+          <span class="text-muted me-2">전월 대비</span>
+
           <span v-if="currentExpense - lastExpense > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
-            <i class="fa-solid fa-won-sign"></i
-            >{{ currentExpense - lastExpense }}
+            {{ formatCurrency(currentExpense - lastExpense) }}
           </span>
           <span v-if="currentExpense - lastExpense < 0" style="color: red">
             <i class="fa-solid fa-arrow-down"> </i>
-            <i class="fa-solid fa-won-sign"></i
-            >{{ currentExpense - lastExpense }}
+            {{ formatCurrency(currentExpense - lastExpense) }}
           </span>
         </p>
       </div>
     </div>
+
+    <div class="border-end"></div>
+
     <!-- 이번 달 총 수업 -->
-    <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row rounded mx-2">
       <div>
-        <i class="fa-solid fa-plus"></i>
+        <i class="fa-solid fa-plus bg-success rounded-circle p-1 me-2"></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 총 수입</h4>
-        <p class="card-text">{{ currentIncome }}</p>
+        <p class="card-text">: {{ formatCurrency(currentIncome) }}</p>
         <p>
-          전월 대비
+          <span class="text-muted me-2">전월 대비</span>
           <span v-if="currentIncome - lastIncome > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
-            <i class="fa-solid fa-won-sign"></i>{{ currentIncome - lastIncome }}
+            {{ formatCurrency(currentIncome - lastIncome) }}
           </span>
           <span v-if="currentIncome - lastIncome < 0" style="color: red">
             <i class="fa-solid fa-arrow-down"> </i>
-            <i class="fa-solid fa-won-sign"></i>{{ currentIncome - lastIncome }}
+            {{ formatCurrency(currentIncome - lastIncome) }}
           </span>
         </p>
       </div>
     </div>
+
+    <div class="border-end"></div>
+
     <!-- 이번 달 순수익 -->
-    <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row rounded mx-2">
       <div>
-        <i class="fa-solid fa-plus-minus"></i>
+        <i
+          class="fa-solid fa-plus-minus bg-primary rounded-circle p-1 me-2"
+        ></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 순수익</h4>
-        <p class="card-text">{{ currentIncome - currentExpense }}</p>
+        <p class="card-text">
+          : {{ formatCurrency(currentIncome - currentExpense) }}
+        </p>
       </div>
     </div>
   </div>
@@ -70,6 +79,15 @@ const currentIncome = computed(() => store.currentIncome);
 
 fetchExpense();
 fetchIncome();
+
+const formatCurrency = (value) => {
+  if (value == null) return '₩0';
+  return `₩ ${value.toLocaleString('ko-KR')}`;
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+.card {
+  background-color: #f8f9fa;
+}
+</style>
