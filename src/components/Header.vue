@@ -1,8 +1,10 @@
 <template>
-  <header class="header">
-    <div class="left">💰 알뜰살뜰 가계부 💰</div>
-    <div class="center">
-      <a href="#" class="menu-item">
+  <header class="header d-flex justify-content-between">
+    <div>
+      <h3>💰 알뜰살뜰 가계부 💰</h3>
+    </div>
+    <div class="d-flex flex-row">
+      <a href="#" class="menu-item mx-3">
         <i class="fas fa-list"></i>
         <span>전체 내역</span>
       </a>
@@ -11,7 +13,7 @@
         <span>지난내역</span>
       </a>
     </div>
-    <div class="right">
+    <div>
       <router-link to="/user/1" class="profile-link">
         <i class="fas fa-user"></i>
         <span>Profile</span>
