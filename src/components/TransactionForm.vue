@@ -52,10 +52,17 @@
         <button class="btn btn-success" type="submit">
           {{ isEdit ? '수정하기' : '추가하기' }}
         </button>
-        <button v-if="isEdit" class="btn btn-danger" @click="onDelete">
+        <button
+          v-if="isEdit"
+          class="btn btn-danger"
+          type="button"
+          @click="onDelete"
+        >
           삭제하기
         </button>
-        <button class="btn btn-secondary" @click="goBack">뒤로가기</button>
+        <button class="btn btn-secondary" type="button" @click="goBack">
+          뒤로가기
+        </button>
       </div>
     </form>
   </div>
@@ -106,10 +113,11 @@ const onSubmit = async () => {
       return;
     }
     await transactionStore.updateTransaction(props.form);
+    router.push(`/transaction/${props.form.id}`); // 수정 후 상세페이지로
   } else {
     await transactionStore.addTransaction(props.form);
+    router.push('/transaction'); // 추가 후 전체 목록으로
   }
-  router.push('/transaction');
 };
 
 const onDelete = async () => {
@@ -117,8 +125,11 @@ const onDelete = async () => {
     console.error('삭제하려는 거래에 id가 없습니다!', props.form);
     return;
   }
+  const confirmDelete = confirm('정말 삭제하시겠습니까?');
+  if (!confirmDelete) return;
+
   await transactionStore.deleteTransaction(props.form.id);
-  router.push('/transaction');
+  router.push('/transaction'); // 삭제 후 목록으로
 };
 
 const goBack = () => {
