@@ -47,7 +47,39 @@
           />
           <label class="form-check-label" for="radio3">최근 3개월</label>
         </div>
+        <div class="form-check me-2">
+          <input
+            type="radio"
+            class="form-check-input"
+            id="radio4"
+            name="category"
+            value="custom"
+            v-model="selectedDateRange"
+          />
+          <label class="form-check-label" for="radio4">직접 입력</label>
+        </div>
       </form>
+      <!-- 직접 선택 선택시 보이는 시작일 종료일 -->
+      <div
+        v-if="selectedDateRange === 'custom'"
+        class="d-flex align-items-center ms-3 mt-2 mb-3"
+      >
+        <label class="me-2 fw-bold">시작일: </label>
+        <input
+          type="date"
+          v-model="customStartDate"
+          class="form-control me-3"
+          style="width: 200px"
+        />
+
+        <label class="me-2 fw-bold">종료일: </label>
+        <input
+          type="date"
+          v-model="customEndDate"
+          class="form-control"
+          style="width: 200px"
+        />
+      </div>
 
       <!-- 카테고리 선택 select -->
       <!-- <form>
@@ -206,6 +238,10 @@ const { incomeCategory, expenseCategory } = storeToRefs(categoryStore);
 
 const selectedIncomeCategories = ref([]);
 const selectedExpenseCategories = ref([]);
+// 직접 입력한 시작일, 종료일
+const customStartDate = ref('');
+const customEndDate = ref('');
+
 const selectedDateRange = ref('option1'); // 기본값: 최근 1주일
 
 // 카테고리 데이터가 로드된 후 초기화
@@ -234,6 +270,16 @@ const getDateRange = () => {
   } else if (selectedDateRange.value === 'option3') {
     // 최근 3개월
     return new Date(now.setMonth(now.getMonth() - 3));
+  } else if (selectedDateRange.value === 'custom') {
+    // 직접 입력
+    if (customStartDate.value && customEndDate.value) {
+      return {
+        start: new Date(customStartDate.value),
+        end: new Date(customEndDate.value),
+      };
+    } else {
+      return null;
+    }
   }
   return null;
 };
@@ -245,10 +291,13 @@ const filteredTransactions = computed(() => {
   return transactions.value.filter((transaction) => {
     // 날짜 필터
     const transactionDate = new Date(transaction.date);
-    const isDateMatch = dateRange
-      ? transactionDate >= dateRange && transactionDate <= new Date()
-      : true;
-
+    // const isDateMatch = dateRange
+    //   ? transactionDate >= dateRange && transactionDate <= new Date()
+    //   : true;
+    const isDateMatch =
+      dateRange && dateRange.start && dateRange.end
+        ? transactionDate >= dateRange.start && transactionDate <= dateRange.end
+        : true;
     // 카테고리 필터
     const isIncomeCategoryMatch = selectedIncomeCategories.value.includes(
       transaction.category
