@@ -238,9 +238,10 @@ const { incomeCategory, expenseCategory } = storeToRefs(categoryStore);
 
 const selectedIncomeCategories = ref([]);
 const selectedExpenseCategories = ref([]);
-// 직접 입력한 시작일, 종료일
-const customStartDate = ref('');
-const customEndDate = ref('');
+// 직접 입력한 시작일, 종료일 기본값 오늘
+const today = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD' 형태
+const customStartDate = ref(today);
+const customEndDate = ref(today);
 
 const selectedDateRange = ref('option1'); // 기본값: 최근 1주일
 
