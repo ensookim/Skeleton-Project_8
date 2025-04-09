@@ -2,13 +2,13 @@
   <form @submit.prevent="onSubmit">
     <div class="form-group">
       <label>이름</label>
-      <input v-model="localName" type="text" />
+      <input v-model="localName" type="text" class="form-control" />
     </div>
     <div class="form-group">
       <label>이메일</label>
-      <input v-model="localEmail" type="email" />
+      <input v-model="localEmail" type="email" class="form-control" />
     </div>
-    <button type="submit">저장하기</button>
+    <button type="submit" class="btn">저장하기</button>
   </form>
 </template>
 
