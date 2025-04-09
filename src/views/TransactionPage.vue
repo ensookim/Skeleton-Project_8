@@ -88,7 +88,7 @@
         <h5 class="fw-bold mb-3" style="color: #22c55e">
           <i class="fa-solid fa-circle-check"></i> 거래 카테고리 선택
         </h5>
-        <button @click="goToAddPage" class="btn">추가하기</button>
+
         <div class="d-flex">
           <div>
             <span class="fw-bold mt-4 mb-3">수입 카테고리</span>
@@ -136,6 +136,7 @@
         </div>
       </form>
     </div>
+    <button @click="goToAddPage" class="btn">추가하기</button>
     <ul class="history-list">
       <li class="item header">
         <span class="col no">No.</span>
@@ -288,7 +289,7 @@ const goToAddPage = () => {
 };
 </script>
 
-<style scoped src="@/assets/common.css">
+<style>
 input[type='checkbox'] {
   accent-color: green;
 }
@@ -328,5 +329,29 @@ input[type='checkbox'] {
 }
 .type {
   width: 80px;
+}
+.btn-wrap {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: 500;
+  text-align: center;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.btn:hover {
+  background: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
 }
 </style>
