@@ -84,8 +84,24 @@ const filteredCategories = computed(() =>
   categoryStore.getCategoryByType(props.form.type)
 );
 
-// 추가 or 수정
+// 추가 or 확인 + 유효성 검사
 const onSubmit = async () => {
+  const emptyFields = [];
+
+  if (!props.form.date) emptyFields.push('날짜');
+  if (!props.form.amount) emptyFields.push('금액');
+  if (!props.form.category) emptyFields.push('카테고리');
+
+  //빈칸 발견시
+  if (emptyFields.length > 0) {
+    alert(`${emptyFields.join(', ')}를(을) 채워주세요!`);
+    return;
+  }
+  // 금액 0 이하
+  if (props.form.amount <= 0) {
+    alert('금액은 0보다 커야합니다!');
+    return;
+  }
   if (props.isEdit) {
     if (!props.form.id) {
       console.error('수정인데 form.id가 없습니다!', props.form);
