@@ -27,9 +27,16 @@ export const useMonthlyStore = defineStore('monthly', () => {
         0
       ).toISOString();
 
-      const currentMonth = await axios.get(
-        `/api/transaction?type=expense&date_gte=${startOfMonth}&date_lte=${endOfMonth}`
-      );
+      // const currentMonth = await axios.get(
+      //   `/api/transaction?type=expense&date_gte=${startOfMonth}&date_lte=${endOfMonth}`
+      // );
+      const currentMonth = await axios.get('/api/transaction', {
+        params: {
+          type: 'expense',
+          date_gte: startOfMonth,
+          date_lte: endOfMonth,
+        },
+      });
       const currentTotal = currentMonth.data.reduce(
         (sum, item) => sum + item.amount,
         0
@@ -47,9 +54,16 @@ export const useMonthlyStore = defineStore('monthly', () => {
         0
       ).toISOString();
 
-      const lastMonth = await axios.get(
-        `/api/transaction?type=expense&date_gte=${startOfLastMonth}&date_lte=${endOfLastMonth}`
-      );
+      // const lastMonth = await axios.get(
+      //   `/api/transaction?type=expense&date_gte=${startOfLastMonth}&date_lte=${endOfLastMonth}`
+      // );
+      const lastMonth = await axios.get('/api/transaction', {
+        params: {
+          type: 'expense',
+          date_gte: startOfLastMonth,
+          date_lte: endOfLastMonth,
+        },
+      });
       const lastTotal = lastMonth.data.reduce(
         (sum, item) => sum + item.amount,
         0
@@ -77,9 +91,16 @@ export const useMonthlyStore = defineStore('monthly', () => {
         0
       ).toISOString();
 
-      const currentMonth = await axios.get(
-        `/api/transaction?type=income&date_gte=${startOfMonth}&date_lte=${endOfMonth}`
-      );
+      // const currentMonth = await axios.get(
+      //   `/api/transaction?type=income&date_gte=${startOfMonth}&date_lte=${endOfMonth}`
+      // );
+      const currentMonth = await axios.get('/api/transaction', {
+        params: {
+          type: 'income',
+          date_gte: startOfMonth,
+          date_lte: endOfMonth,
+        },
+      });
       const currentTotal = currentMonth.data.reduce(
         (sum, item) => sum + item.amount,
         0
@@ -97,9 +118,16 @@ export const useMonthlyStore = defineStore('monthly', () => {
         0
       ).toISOString();
 
-      const lastMonth = await axios.get(
-        `/api/transaction?type=income&date_gte=${startOfLastMonth}&date_lte=${endOfLastMonth}`
-      );
+      // const lastMonth = await axios.get(
+      //   `/api/transaction?type=income&date_gte=${startOfLastMonth}&date_lte=${endOfLastMonth}`
+      // );
+      const lastMonth = await axios.get('/api/transaction', {
+        params: {
+          type: 'income',
+          date_gte: startOfLastMonth,
+          date_lte: endOfLastMonth,
+        },
+      });
       const lastTotal = lastMonth.data.reduce(
         (sum, item) => sum + item.amount,
         0
