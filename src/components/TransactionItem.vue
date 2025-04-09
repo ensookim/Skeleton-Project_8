@@ -1,20 +1,27 @@
 <template>
-  <li @click="goToDetail" style="list-style: none; cursor: pointer">
-    <!-- 클릭하면 상세 내역 보기 -->
-    <span>
-      {{ index + 1 }} {{ trans.date }} {{ trans.amount }} {{ trans.category }}
-      <button>{{ trans.type === 'income' ? '수입' : '지출' }}</button>
+  <li class="item" @click="goToDetail">
+    <span class="col no">{{ index + 1 }}</span>
+    <span class="col date">{{ formattedDate }}</span>
+    <span
+      class="col amount"
+      :class="trans.type === 'income' ? 'text-success' : 'text-danger'"
+    >
+      {{ formattedAmount }}
+    </span>
+    <span class="col category">{{ trans.category }}</span>
+    <span class="col type">
+      <span :class="['badge', trans.type]">
+        {{ trans.type === 'income' ? '수입' : '지출' }}
+      </span>
     </span>
   </li>
 </template>
 
 <script setup>
-import { useTransactionStore } from '@/stores/transactionStore';
 import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
 const router = useRouter();
-
-const store_trans = useTransactionStore();
 
 const props = defineProps({
   trans: Object,
@@ -24,6 +31,58 @@ const props = defineProps({
 const goToDetail = () => {
   router.push(`/transaction/${props.trans.id}`);
 };
+
+const formattedDate = computed(() =>
+  new Date(props.trans.date).toLocaleDateString('ko-KR')
+);
+
+const formattedAmount = computed(
+  () => props.trans.amount.toLocaleString('ko-KR') + '원'
+);
 </script>
 
-<style scoped src="@/assets/common.css"></style>
+<style scoped>
+.item {
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+.item:hover {
+  background-color: #f8f9fa;
+}
+.col {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 0.95rem;
+}
+.no {
+  width: 40px;
+}
+.date {
+  width: 100px;
+}
+.amount {
+  width: 100px;
+  font-weight: bold;
+}
+.category {
+  width: 120px;
+}
+.type {
+  width: 80px;
+}
+.badge {
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+.income {
+  background-color: #a5e6d7;
+  color: #198754;
+}
+.expense {
+  background-color: #ffc3c3;
+  color: #dc3545;
+}
+</style>
