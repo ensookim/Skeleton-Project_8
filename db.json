@@ -34,6 +34,56 @@
     {
       "id": "1",
       "userId": "1",
+      "date": "2025-02-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 2000000,
+      "memo": "2월 급여",
+      "isPeriodic": true
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "date": "2025-02-05",
+      "type": "expense",
+      "category": "식비",
+      "amount": 15000,
+      "memo": "저녁 외식",
+      "isPeriodic": false
+    },
+    {
+      "id": "3",
+      "userId": "1",
+      "date": "2025-03-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 2000000,
+      "memo": "3월 급여",
+      "isPeriodic": true
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "date": "2025-03-10",
+      "type": "expense",
+      "category": "공과금",
+      "amount": 80000,
+      "memo": "전기요금",
+      "isPeriodic": true
+    },
+    {
+      "id": "5",
+      "userId": "1",
+      "date": "2025-03-15",
+      "type": "income",
+      "category": "이자",
+      "amount": 120000,
+      "memo": "예금 이자",
+      "isPeriodic": true
+    },
+    {
+      "id": "6",
+      "userId": "1",
       "date": "2025-04-01",
       "type": "income",
       "category": "월급",
