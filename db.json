@@ -65,7 +65,7 @@
       "date": "2025-03-15",
       "type": "income",
       "category": "이자",
-      "amount": 12000,
+      "amount": 120000,
       "memo": "예금 이자",
       "isPeriodic": true
     },
