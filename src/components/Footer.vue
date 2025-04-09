@@ -6,7 +6,7 @@
 <script setup></script>
 <style scoped>
 footer {
-  background-color: #f0f0f0;
+  background-color: #f9fbfd;
   padding: 1rem;
   text-align: center;
   width: 100%;
