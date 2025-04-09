@@ -141,14 +141,22 @@
         </div>
       </form>
     </div>
-
-    <TransactionItem
-      v-for="(trans, index) in paginationTransactions"
-      :key="trans.id"
-      :trans="trans"
-      :index="index"
-    />
-    <nav aria-label="Page navigation example">
+    <ul class="history-list">
+      <li class="item header">
+        <span class="col no">No.</span>
+        <span class="col date">날짜</span>
+        <span class="col amount">금액</span>
+        <span class="col category">카테고리</span>
+        <span class="col type">유형</span>
+      </li>
+      <TransactionItem
+        v-for="(trans, index) in paginationTransactions"
+        :key="trans.id"
+        :trans="trans"
+        :index="index"
+      />
+    </ul>
+    <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <li class="page-item">
           <button
@@ -286,5 +294,41 @@ const goToAddPage = () => {
 <style scoped>
 input[type='checkbox'] {
   accent-color: green;
+}
+.history-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.header {
+  display: flex;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+.item {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.col {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 0.95rem;
+}
+.no {
+  width: 40px;
+}
+.date {
+  width: 100px;
+}
+.amount {
+  width: 100px;
+}
+.category {
+  width: 120px;
+}
+.type {
+  width: 80px;
 }
 </style>

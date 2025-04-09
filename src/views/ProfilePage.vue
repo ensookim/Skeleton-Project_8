@@ -16,12 +16,14 @@
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUserStore } from '@/stores/userStore';
+import { storeToRefs } from 'pinia';
 
 const route = useRoute();
 const id = route.params.id;
 
 const userStore = useUserStore();
-const { user, fetchUser } = userStore;
+const { fetchUser } = userStore;
+const { user } = storeToRefs(userStore);
 
 onMounted(() => {
   fetchUser(id);
