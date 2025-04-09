@@ -42,10 +42,10 @@ const transactionId = route.params.id;
 const transaction = ref(null);
 
 // 거래 상세 정보 불러오기
-onMounted(() => {
-  store.fetchTransactions();
+onMounted(async () => {
+  await store.fetchTransactions();
   transaction.value = transactions.value.find(
-    (trans) => trans.id === transactionId
+    (trans) => String(trans.id) === String(transactionId)
   );
 });
 
