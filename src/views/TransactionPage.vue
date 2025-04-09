@@ -186,31 +186,31 @@
     </ul>
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
-        <li class="page-item">
-          <button
-            class="page-link"
-            aria-label="Previous"
-            @click="goToPage(currentPage - 1)"
-          >
-            <span aria-hidden="true">&laquo;</span>
-          </button>
-        </li>
+        <!-- 이전 그룹 -->
         <li
           class="page-item"
-          v-for="page in totalPages"
+          :class="{ disabled: currentPageGroup.value === 0 }"
+        >
+          <button class="page-link" @click="goToPrevGroup">&laquo;</button>
+        </li>
+        <!-- 현재 그룹 페이지 번호 -->
+        <li
+          class="page-item"
+          v-for="page in visiblePages"
           :key="page"
           :class="{ active: page === currentPage }"
         >
           <button class="page-link" @click="goToPage(page)">{{ page }}</button>
         </li>
-        <li class="page-item">
-          <button
-            class="page-link"
-            aria-label="Next"
-            @click="goToPage(currentPage + 1)"
-          >
-            <span aria-hidden="true">&raquo;</span>
-          </button>
+        <!-- 다음 그룹 -->
+        <li
+          class="page-item"
+          :class="{
+            disabled:
+              (currentPageGroup.value + 1) * pagesPerGroup >= totalPages.value,
+          }"
+        >
+          <button class="page-link" @click="goToNextGroup">&raquo;</button>
         </li>
       </ul>
     </nav>
@@ -316,6 +316,8 @@ const filteredTransactions = computed(() => {
 // 페이징 관련
 const currentPage = ref(1);
 const itemsPerPage = 10;
+// 최대 페이지 수 10개
+const pagesPerGroup = 10;
 
 // Math.ceil 올림 함수 transaction 갯수 / 10 으로 페이지 수 정함
 const totalPages = computed(() =>
@@ -329,10 +331,36 @@ const paginationTransactions = computed(() => {
   return filteredTransactions.value.slice(start, end);
 });
 
+//Math.floor 버림 함수
+const currentPageGroup = computed(() =>
+  Math.floor((currentPage.value - 1) / pagesPerGroup)
+);
+// 페이지 그룹
+const visiblePages = computed(() => {
+  const start = currentPageGroup.value * pagesPerGroup + 1;
+  const end = Math.min(start + pagesPerGroup - 1, totalPages.value);
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+});
+
 // 페이지 이동
 function goToPage(page) {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
+  }
+}
+
+// 이전 페이지 그룹
+function goToPrevGroup() {
+  const prevGroupStart = (currentPageGroup.value - 1) * pagesPerGroup + 1;
+  if (prevGroupStart >= 1) {
+    currentPage.value = prevGroupStart;
+  }
+}
+// 다음 페이지 그룹
+function goToNextGroup() {
+  const nextGroupStart = (currentPageGroup.value + 1) * pagesPerGroup + 1;
+  if (nextGroupStart <= totalPages.value) {
+    currentPage.value = nextGroupStart;
   }
 }
 
