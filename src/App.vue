@@ -2,8 +2,8 @@
   <div class="app-wrapper">
     <Header />
     <router-view />
-    <Footer />
   </div>
+  <Footer />
 </template>
 <script setup>
 import Header from '@/components/Header.vue';
