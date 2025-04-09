@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <h2>프로필 수정</h2>
+    <h2><i class="fas fa-user fa-sm text-primary"></i> 프로필</h2>
+
+    <p class="text-muted mb-4">Edit Profile</p>
     <ProfileForm :name="name" :email="email" @submitForm="handleSubmit" />
   </div>
 </template>
@@ -36,13 +38,4 @@ const handleSubmit = async (newName, newEmail) => {
 };
 </script>
 
-<style scoped>
-.container {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-</style>
+<style scoped src="@/assets/common.css"></style>

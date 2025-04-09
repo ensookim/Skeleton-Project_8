@@ -9,13 +9,25 @@
   "incomeCategory": [
     {
       "id": "1",
-      "name": ["기타", "용돈", "월급", "이자"]
+      "name": [
+        "기타",
+        "용돈",
+        "월급",
+        "이자"
+      ]
     }
   ],
   "expenseCategory": [
     {
       "id": "1",
-      "name": ["공과금", "교통비", "문화생활", "쇼핑", "식비", "정기구독"]
+      "name": [
+        "공과금",
+        "교통비",
+        "문화생활",
+        "쇼핑",
+        "식비",
+        "정기구독"
+      ]
     }
   ],
   "transaction": [
@@ -268,6 +280,15 @@
       "amount": 9500,
       "memo": "점심 도시락",
       "isPeriodic": false
+    },
+    {
+      "date": "2025-04-24",
+      "amount": 123123,
+      "type": "expense",
+      "category": "문화생활",
+      "isPeriodic": true,
+      "memo": "asdas",
+      "id": "pnoDe1T"
     }
   ]
 }
