@@ -9,25 +9,13 @@
   "incomeCategory": [
     {
       "id": "1",
-      "name": [
-        "기타",
-        "용돈",
-        "월급",
-        "이자"
-      ]
+      "name": ["기타", "용돈", "월급", "이자"]
     }
   ],
   "expenseCategory": [
     {
       "id": "1",
-      "name": [
-        "공과금",
-        "교통비",
-        "문화생활",
-        "쇼핑",
-        "식비",
-        "정기구독"
-      ]
+      "name": ["공과금", "교통비", "문화생활", "쇼핑", "식비", "정기구독"]
     }
   ],
   "transaction": [
@@ -92,7 +80,7 @@
       "isPeriodic": true
     },
     {
-      "id": "2",
+      "id": "7",
       "userId": "1",
       "date": "2025-04-02",
       "type": "expense",
@@ -102,7 +90,7 @@
       "isPeriodic": false
     },
     {
-      "id": "3",
+      "id": "8",
       "userId": "1",
       "date": "2025-04-02",
       "type": "expense",
@@ -112,7 +100,7 @@
       "isPeriodic": false
     },
     {
-      "id": "4",
+      "id": "9",
       "userId": "1",
       "date": "2025-04-03",
       "type": "expense",
@@ -122,7 +110,7 @@
       "isPeriodic": true
     },
     {
-      "id": "5",
+      "id": "10",
       "userId": "1",
       "date": "2025-04-04",
       "type": "income",
@@ -132,7 +120,7 @@
       "isPeriodic": true
     },
     {
-      "id": "6",
+      "id": "11",
       "userId": "1",
       "date": "2025-04-05",
       "type": "expense",
@@ -142,7 +130,7 @@
       "isPeriodic": false
     },
     {
-      "id": "7",
+      "id": "12",
       "userId": "1",
       "date": "2025-04-05",
       "type": "expense",
@@ -152,7 +140,7 @@
       "isPeriodic": false
     },
     {
-      "id": "8",
+      "id": "13",
       "userId": "1",
       "date": "2025-04-06",
       "type": "income",
@@ -162,7 +150,7 @@
       "isPeriodic": false
     },
     {
-      "id": "9",
+      "id": "14",
       "userId": "1",
       "date": "2025-04-06",
       "type": "expense",
@@ -172,7 +160,7 @@
       "isPeriodic": false
     },
     {
-      "id": "10",
+      "id": "15",
       "userId": "1",
       "date": "2025-04-07",
       "type": "expense",
@@ -182,7 +170,7 @@
       "isPeriodic": true
     },
     {
-      "id": "11",
+      "id": "16",
       "userId": "1",
       "date": "2025-04-07",
       "type": "expense",
@@ -192,7 +180,7 @@
       "isPeriodic": false
     },
     {
-      "id": "12",
+      "id": "17",
       "userId": "1",
       "date": "2025-04-08",
       "type": "expense",
@@ -202,7 +190,7 @@
       "isPeriodic": false
     },
     {
-      "id": "13",
+      "id": "18",
       "userId": "1",
       "date": "2025-04-08",
       "type": "income",
@@ -212,7 +200,7 @@
       "isPeriodic": false
     },
     {
-      "id": "14",
+      "id": "19",
       "userId": "1",
       "date": "2025-04-09",
       "type": "expense",
@@ -222,7 +210,7 @@
       "isPeriodic": true
     },
     {
-      "id": "15",
+      "id": "20",
       "userId": "1",
       "date": "2025-04-10",
       "type": "expense",
@@ -232,7 +220,7 @@
       "isPeriodic": false
     },
     {
-      "id": "16",
+      "id": "21",
       "userId": "1",
       "date": "2025-04-11",
       "type": "expense",
@@ -242,7 +230,7 @@
       "isPeriodic": false
     },
     {
-      "id": "17",
+      "id": "22",
       "userId": "1",
       "date": "2025-04-12",
       "type": "expense",
@@ -252,7 +240,7 @@
       "isPeriodic": false
     },
     {
-      "id": "18",
+      "id": "23",
       "userId": "1",
       "date": "2025-04-13",
       "type": "income",
@@ -262,7 +250,7 @@
       "isPeriodic": false
     },
     {
-      "id": "19",
+      "id": "24",
       "userId": "1",
       "date": "2025-04-14",
       "type": "expense",
@@ -272,7 +260,7 @@
       "isPeriodic": true
     },
     {
-      "id": "20",
+      "id": "25",
       "userId": "1",
       "date": "2025-04-15",
       "type": "expense",
