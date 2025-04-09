@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h2>프로필</h2>
-    <p><strong>이름 : </strong> {{ name }}</p>
-    <p><strong>이메일 : </strong> {{ email }}</p>
+    <p><strong>이름 : </strong> {{ user?.name }}</p>
+    <p><strong>이메일 : </strong> {{ user?.email }}</p>
     <div class="btn-wrap">
       <router-link to="/" class="btn">뒤로가기</router-link>
       <router-link :to="`/user/edit/${id}`" class="btn">수정하기</router-link>
@@ -11,20 +11,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import axios from 'axios';
+import { useUserStore } from '@/stores/userStore';
 
 const route = useRoute();
 const id = route.params.id;
 
-const name = ref('');
-const email = ref('');
+const userStore = useUserStore();
+const { user, fetchUser } = userStore;
 
-onMounted(async () => {
-  const res = await axios.get(`http://localhost:3000/users/${id}`);
-  name.value = res.data.name;
-  email.value = res.data.email;
+onMounted(() => {
+  fetchUser(id);
 });
 </script>
 
