@@ -9,7 +9,9 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
   const fetchTransactions = async () => {
     try {
       const reseponse = await axios.get('/api/transaction');
-      transactions.value = reseponse.data;
+      transactions.value = reseponse.data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
     } catch (err) {
       console.error('거래 내역 불러오기에 실패했습니다. :', err);
     }
