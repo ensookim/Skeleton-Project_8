@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <div class="logo">
-      <h3>💰 알뜰살뜰 가계부</h3>
+      <router-link to="/" class="logo-link">
+        <h3>💰 알뜰살뜰 가계부</h3>
+      </router-link>
     </div>
 
     <nav class="nav">
@@ -90,5 +92,10 @@
 
 .profile i {
   font-size: 1.1rem;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
