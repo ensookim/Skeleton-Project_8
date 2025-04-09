@@ -156,7 +156,7 @@
         :index="index"
       />
     </ul>
-    <nav aria-label="Page navigation example">
+    <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <li class="page-item">
           <button
