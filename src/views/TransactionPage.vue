@@ -249,7 +249,9 @@ const filteredTransactions = computed(() => {
   return transactions.value.filter((transaction) => {
     // 날짜 필터
     const transactionDate = new Date(transaction.date);
-    const isDateMatch = dateRange ? transactionDate >= dateRange : true;
+    const isDateMatch = dateRange
+      ? transactionDate >= dateRange && transactionDate <= new Date()
+      : true;
 
     // 카테고리 필터
     const isIncomeCategoryMatch = selectedIncomeCategories.value.includes(
