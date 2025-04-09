@@ -50,13 +50,11 @@
     </div>
 
     <div class="btn-wrap">
-      <button class="btn left" @click="onSubmit">
+      <button class="btn" @click="onSubmit">
         {{ isEdit ? '수정하기' : '추가하기' }}
       </button>
-      <button v-if="isEdit" class="btn center" @click="onDelete">
-        삭제하기
-      </button>
-      <button class="btn right" @click="goBack">뒤로가기</button>
+      <button v-if="isEdit" class="btn" @click="onDelete">삭제하기</button>
+      <button class="btn" @click="goBack">뒤로가기</button>
     </div>
   </div>
 </template>
@@ -130,59 +128,4 @@ const goBack = () => {
   router.back();
 };
 </script>
-<style scoped>
-.container {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-p {
-  color: rgb(111, 222, 111);
-}
-
-.btn-wrap {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between; /* 좌측, 중앙, 우측 정렬 */
-  gap: 1rem;
-}
-
-.btn {
-  padding: 0.8rem 1.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: #4a4a4a;
-  font-weight: 500;
-  transition: 0.2s;
-  width: 100%; /* 버튼 너비를 일정하게 맞추기 */
-}
-
-.btn:hover {
-  background: #2e7d32;
-  color: #fff;
-  border-color: #2e7d32;
-}
-
-.left {
-  text-align: left;
-}
-
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-</style>
+<style scoped src="@/assets/common.css"></style>

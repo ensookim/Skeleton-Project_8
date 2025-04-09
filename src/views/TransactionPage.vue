@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <span>전체 내역</span>
+  <div class="container">
+    <p2>전체 내역</p2>
+
     <button @click="goToAdd">추가하기</button>
     <TransactionItem
       v-for="(trans, index) in paginationTransactions"
@@ -83,4 +84,4 @@ const goToAdd = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped src="@/assets/common.css"></style>

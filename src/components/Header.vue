@@ -1,19 +1,21 @@
 <template>
-  <header class="header d-flex justify-content-between">
-    <div>
-      <h3>💰 알뜰살뜰 가계부 💰</h3>
+  <header class="header">
+    <div class="logo">
+      <h3>💰 알뜰살뜰 가계부</h3>
     </div>
-    <div class="d-flex flex-row">
-      <a href="#" class="menu-item mx-3">
+
+    <nav class="nav">
+      <router-link to="/transaction" class="menu-item">
         <i class="fas fa-list"></i>
         <span>전체 내역</span>
-      </a>
-      <a href="#" class="menu-item">
+      </router-link>
+      <router-link to="/" class="menu-item">
         <i class="fas fa-clock"></i>
-        <span>지난내역</span>
-      </a>
-    </div>
-    <div>
+        <span>최근 내역</span>
+      </router-link>
+    </nav>
+
+    <div class="profile">
       <router-link to="/user/1" class="profile-link">
         <i class="fas fa-user"></i>
         <span>Profile</span>
@@ -29,48 +31,64 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ddd;
-  font-family: 'Arial', sans-serif;
+  padding: 1.2rem 2rem;
+  background-color: #f9fbfd;
+
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  font-family: 'Pretendard', 'Arial', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
-.left {
-  font-weight: bold;
+.logo h3 {
+  margin: 0;
+  font-weight: 600;
   font-size: 1.2rem;
+  color: #333;
 }
 
-.center {
+.nav {
   display: flex;
   gap: 2rem;
-  margin-left: -40rem;
+  align-items: center;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #333;
+  color: #444;
   font-size: 0.95rem;
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.menu-item:hover {
+  color: #007bff;
 }
 
 .menu-item i {
   font-size: 1rem;
 }
 
-.right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-}
-
 .profile-link {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #333;
+  color: #444;
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.profile-link:hover {
+  color: #007bff;
+}
+
+.profile i {
+  font-size: 1.1rem;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="card rounded-4 d-flex flex-row p-3 m-5">
     <!-- 이번 달 총 지출 -->
-    <div class="card-body d-flex flex-row rounded mx-2">
+    <div class="card-body d-flex flex-row rounded mx-5">
       <div>
-        <i class="fa-solid fa-minus bg-danger rounded-circle p-1 me-2"></i>
+        <i class="fa-solid fa-minus bg-danger rounded-circle p-1"></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 총 지출</h4>
@@ -88,6 +88,6 @@ const formatCurrency = (value) => {
 
 <style scoped>
 .card {
-  background-color: #f8f9fa;
+  background-color: #fff;
 }
 </style>

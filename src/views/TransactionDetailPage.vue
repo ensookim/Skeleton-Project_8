@@ -64,48 +64,4 @@ const goBack = () => {
   router.back();
 };
 </script>
-
-<style scoped>
-.container {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-p {
-  color: rgb(111, 222, 111);
-}
-
-.btn-wrap {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-}
-.btn {
-  padding: 0.8rem 1.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: #4a4a4a;
-  font-weight: 500;
-  transition: 0.2s;
-  width: 100%;
-}
-
-.btn:hover {
-  background: #2e7d32;
-  color: #fff;
-  border-color: #2e7d32;
-}
-</style>
+<style scoped src="@/assets/common.css"></style>
