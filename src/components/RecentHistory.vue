@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>최근 거래 내역</h2>
+    <h3>최근 거래 내역</h3>
     <select v-model="selectedType">
       <option value="all">지출/수입</option>
       <option value="expense">지출</option>
