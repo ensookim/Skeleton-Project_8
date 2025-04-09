@@ -1,15 +1,9 @@
 <template>
-  <div class="m-5">
+  <div class="m-5 card rounded-4 p-4 shadow">
     <div class="clearfix">
       <h1 class="mb-4 fw-bold float-start">
         <i class="fa-solid fa-list"></i> 전체 내역
       </h1>
-      <button
-        @click="goToAddPage"
-        class="border-1 border-primary rounded float-end btn btn-outline-primary"
-      >
-        추가하기
-      </button>
     </div>
 
     <!-- Filter -->
@@ -94,6 +88,7 @@
         <h5 class="fw-bold mb-3" style="color: #22c55e">
           <i class="fa-solid fa-circle-check"></i> 거래 카테고리 선택
         </h5>
+        <button @click="goToAddPage" class="btn">추가하기</button>
         <div class="d-flex">
           <div>
             <span class="fw-bold mt-4 mb-3">수입 카테고리</span>
@@ -293,13 +288,14 @@ const goToAddPage = () => {
 };
 </script>
 
-<style scoped>
+<style scoped src="@/assets/common.css">
 input[type='checkbox'] {
   accent-color: green;
 }
 .history-list {
   padding: 0;
   margin: 0;
+  flex-grow: 1;
   list-style: none;
 }
 .header {

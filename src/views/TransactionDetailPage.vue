@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5" v-if="transaction">
-    <div class="card shadow p-4">
-      <h3 class="text-center mb-4">📄 상세 내역</h3>
+    <div class="card shadow p-4 rounded-4">
+      <h3 class="text-letf mb-4">📄 상세 내역</h3>
 
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item">

@@ -1,5 +1,5 @@
 <template>
-  <div class="card rounded-4 d-flex flex-row p-3 m-5">
+  <div class="card rounded-4 d-flex flex-row p-3 m-5 shadow">
     <!-- 이번 달 총 지출 -->
     <div class="card-body d-flex flex-row rounded mx-5">
       <div>
