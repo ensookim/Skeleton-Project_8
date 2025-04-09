@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>전체 내역</span>
-    <button @click="goToAddPage">추가하기</button>
+    <button @click="goToAdd">추가하기</button>
     <TransactionItem
       v-for="(trans, index) in paginationTransactions"
       :key="trans.id"
@@ -78,7 +78,7 @@ function goToPage(page) {
   }
 }
 
-const goToAddPage = () => {
+const goToAdd = () => {
   router.push('/transaction/add');
 };
 </script>

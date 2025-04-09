@@ -2,10 +2,11 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export const useTransactionStore = defineStore('useTransactionStore', () => {
   const transactions = ref([]);
-
+  const router = useRouter();
   //불러오기
   const fetchTransactions = async () => {
     try {
@@ -48,11 +49,26 @@ export const useTransactionStore = defineStore('useTransactionStore', () => {
     }
   };
 
+  const goToAdd = () => {
+    router.push('/transaction/add');
+  };
+
+  const goToTransaction = () => {
+    router.push('/transaction');
+  };
+
+  const goToDetail = (id) => {
+    router.push(`/transaction/${id}`);
+  };
+
   return {
     transactions,
     fetchTransactions,
     addTransaction,
     updateTransaction,
     deleteTransaction,
+    goToAdd,
+    goToDetail,
+    goToTransaction,
   };
 });
