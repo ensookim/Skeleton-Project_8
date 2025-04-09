@@ -1,5 +1,5 @@
 <template>
-  <div class="card rounded-4 p-3 m-5">
+  <div class="card rounded-4 p-3 m-5 shadow">
     <div class="card-body">
       <div class="card-title d-flex justify-content-between">
         <h3 class="mb-3">최근 거래 내역</h3>
