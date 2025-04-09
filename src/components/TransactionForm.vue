@@ -1,61 +1,63 @@
-<!-- TransactionForm.vue -->
-
 <template>
-  <div class="container">
-    <h2>{{ isEdit ? '내역 수정하기' : '내역 추가하기' }}</h2>
-    <p>Transaction Detail</p>
+  <div class="card p-4 shadow-sm">
+    <h2 class="mb-3">{{ isEdit ? '내역 수정하기' : '내역 추가하기' }}</h2>
 
-    <div class="form-group">
-      <label>날짜</label>
-      <input type="date" v-model="form.date" required />
-    </div>
+    <form @submit.prevent="onSubmit">
+      <div class="mb-3">
+        <label class="form-label">날짜</label>
+        <input type="date" v-model="form.date" class="form-control" required />
+      </div>
 
-    <div class="form-group">
-      <label>금액</label>
-      <input type="number" v-model="form.amount" required />
-    </div>
+      <div class="mb-3">
+        <label class="form-label">금액</label>
+        <input
+          type="number"
+          v-model="form.amount"
+          class="form-control"
+          required
+        />
+      </div>
 
-    <div class="form-group">
-      <label>거래 유형</label>
-      <select v-model="form.type">
-        <option value="income">수입</option>
-        <option value="expense">지출</option>
-      </select>
-    </div>
+      <div class="mb-3">
+        <label class="form-label">거래 유형</label>
+        <select v-model="form.type" class="form-select">
+          <option value="income">수입</option>
+          <option value="expense">지출</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label>카테고리</label>
-      <select v-model="form.category">
-        <option v-for="index in filteredCategories" :key="index" :value="index">
-          {{ index }}
-        </option>
-      </select>
-    </div>
+      <div class="mb-3">
+        <label class="form-label">카테고리</label>
+        <select v-model="form.category" class="form-select">
+          <option v-for="item in filteredCategories" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label>정기적인가요?</label>
-      <select v-model="form.isPeriodic">
-        <option :value="true">예</option>
-        <option :value="false">아니오</option>
-      </select>
-    </div>
+      <div class="mb-3">
+        <label class="form-label">정기적인가요?</label>
+        <select v-model="form.isPeriodic" class="form-select">
+          <option :value="true">예</option>
+          <option :value="false">아니오</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label>메모</label>
-      <textarea
-        v-model="form.memo"
-        rows="3"
-        placeholder="추가 메모가 있다면 입력해주세요"
-      />
-    </div>
+      <div class="mb-3">
+        <label class="form-label">메모</label>
+        <textarea v-model="form.memo" class="form-control" rows="3"></textarea>
+      </div>
 
-    <div class="btn-wrap">
-      <button class="btn" @click="onSubmit">
-        {{ isEdit ? '수정하기' : '추가하기' }}
-      </button>
-      <button v-if="isEdit" class="btn" @click="onDelete">삭제하기</button>
-      <button class="btn" @click="goBack">뒤로가기</button>
-    </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-success" type="submit">
+          {{ isEdit ? '수정하기' : '추가하기' }}
+        </button>
+        <button v-if="isEdit" class="btn btn-danger" @click="onDelete">
+          삭제하기
+        </button>
+        <button class="btn btn-secondary" @click="goBack">뒤로가기</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -82,24 +84,22 @@ const filteredCategories = computed(() =>
   categoryStore.getCategoryByType(props.form.type)
 );
 
-// 추가 or 확인 + 유효성 검사
 const onSubmit = async () => {
   const emptyFields = [];
-
   if (!props.form.date) emptyFields.push('날짜');
   if (!props.form.amount) emptyFields.push('금액');
   if (!props.form.category) emptyFields.push('카테고리');
 
-  //빈칸 발견시
   if (emptyFields.length > 0) {
     alert(`${emptyFields.join(', ')}를(을) 채워주세요!`);
     return;
   }
-  // 금액 0 이하
+
   if (props.form.amount <= 0) {
     alert('금액은 0보다 커야합니다!');
     return;
   }
+
   if (props.isEdit) {
     if (!props.form.id) {
       console.error('수정인데 form.id가 없습니다!', props.form);
@@ -109,11 +109,9 @@ const onSubmit = async () => {
   } else {
     await transactionStore.addTransaction(props.form);
   }
-
   router.push('/transaction');
 };
 
-// 삭제
 const onDelete = async () => {
   if (!props.form.id) {
     console.error('삭제하려는 거래에 id가 없습니다!', props.form);
@@ -123,9 +121,7 @@ const onDelete = async () => {
   router.push('/transaction');
 };
 
-// 뒤로가기
 const goBack = () => {
   router.back();
 };
 </script>
-<style scoped src="@/assets/common.css"></style>

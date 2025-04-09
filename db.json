@@ -268,6 +268,15 @@
       "amount": 9500,
       "memo": "점심 도시락",
       "isPeriodic": false
+    },
+    {
+      "date": "2025-04-24",
+      "amount": 123123,
+      "type": "expense",
+      "category": "문화생활",
+      "isPeriodic": true,
+      "memo": "asdas",
+      "id": "pnoDe1T"
     }
   ]
 }
