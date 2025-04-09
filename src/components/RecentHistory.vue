@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>최근 거래 내역</h1>
+  <div class="container">
+    <h2>최근 거래 내역</h2>
     <select v-model="selectedType">
       <option value="all">지출/수입</option>
       <option value="expense">지출</option>
@@ -55,4 +55,4 @@ const goToTransaction = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped src="@/assets/common.css"></style>

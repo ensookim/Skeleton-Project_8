@@ -266,4 +266,4 @@ const goToAddPage = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped src="@/assets/common.css"></style>
