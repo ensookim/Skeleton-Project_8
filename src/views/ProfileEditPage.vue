@@ -8,31 +8,32 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import axios from 'axios';
-import ProfileForm from '../components/ProfileForm.vue';
+import { useUserStore } from '@/stores/userStore';
+import ProfileForm from '@/components/ProfileForm.vue';
 
 const route = useRoute();
 const router = useRouter();
+const userStore = useUserStore();
 const id = route.params.id;
 
 const name = ref('');
 const email = ref('');
 
 onMounted(async () => {
-  const res = await axios.get(`http://localhost:3000/users/${id}`);
-  name.value = res.data.name;
-  email.value = res.data.email;
+  await userStore.fetchUser(id);
+  name.value = userStore.user?.name || '';
+  email.value = userStore.user?.email || '';
 });
 
-async function handleSubmit(updatedName, updatedEmail) {
-  await axios.put(`http://localhost:3000/users/${id}`, {
+const handleSubmit = async (newName, newEmail) => {
+  await userStore.updateUser(id, {
     id,
-    name: updatedName,
-    email: updatedEmail,
+    name: newName,
+    email: newEmail,
   });
-  alert('저장되었습니다!');
+  alert('수정되었습니다!');
   router.push(`/user/${id}`);
-}
+};
 </script>
 
 <style scoped>
@@ -43,11 +44,5 @@ async function handleSubmit(updatedName, updatedEmail) {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  margin-bottom: 1.5rem;
-  color: #333;
-  text-align: center;
 }
 </style>
