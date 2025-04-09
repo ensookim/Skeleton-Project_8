@@ -39,7 +39,7 @@
         </li>
       </ul>
 
-      <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-start gap-2 mt-4">
         <button class="btn btn-outline-secondary" @click="goBack">
           뒤로가기
         </button>
