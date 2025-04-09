@@ -1,12 +1,24 @@
 <template>
-  <div>
-    <span>전체 내역</span>
-    <button @click="goToAddPage">추가하기</button>
+  <div class="m-5">
+    <div class="clearfix">
+      <h1 class="mb-4 fw-bold float-start">
+        <i class="fa-solid fa-list"></i> 전체 내역
+      </h1>
+      <button
+        @click="goToAddPage"
+        class="border-1 border-primary rounded float-end btn btn-outline-primary"
+      >
+        추가하기
+      </button>
+    </div>
 
     <!-- Filter -->
-    <div class="container mt-3 p-1">
+    <div class="container-fluid p-1">
+      <h5 class="fw-bold mb-3" style="color: #22c55e">
+        <i class="fa-solid fa-circle-check"></i> 거래 기간 선택
+      </h5>
       <!-- 날짜 선택 radio -->
-      <form class="d-flex">
+      <form class="d-flex ms-3 mb-4">
         <div class="form-check me-2">
           <input
             type="radio"
@@ -78,47 +90,52 @@
       </form> -->
 
       <!-- 카테고리 선택 checkbox -->
-      <form>
-        <div>
-          <span>수입 카테고리</span>
-          <div class="d-flex flex-row">
-            <div
-              v-for="(category, index) in incomeCategory"
-              :key="'income-' + index"
-              class="form-check"
-            >
-              <input
-                type="checkbox"
-                class="form-check-input"
-                :id="'income-' + index"
-                :value="category"
-                v-model="selectedIncomeCategories"
-              />
-              <label class="form-check-label" :for="'income-' + index">
-                {{ category }}
-              </label>
+      <form class="mb-4">
+        <h5 class="fw-bold mb-3" style="color: #22c55e">
+          <i class="fa-solid fa-circle-check"></i> 거래 카테고리 선택
+        </h5>
+        <div class="d-flex">
+          <div>
+            <span class="fw-bold mt-4 mb-3">수입 카테고리</span>
+            <div class="d-flex flex-row mt-1 mb-2">
+              <div
+                v-for="(category, index) in incomeCategory"
+                :key="'income-' + index"
+                class="form-check"
+              >
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  :id="'income-' + index"
+                  :value="category"
+                  v-model="selectedIncomeCategories"
+                />
+                <label class="form-check-label me-3" :for="'income-' + index">
+                  {{ category }}
+                </label>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <span>지출 카테고리</span>
-          <div class="d-flex flex-row">
-            <div
-              v-for="(category, index) in expenseCategory"
-              :key="'expense-' + index"
-              class="form-check"
-            >
-              <input
-                type="checkbox"
-                class="form-check-input"
-                :id="'expense-' + index"
-                :value="category"
-                v-model="selectedExpenseCategories"
-              />
-              <label class="form-check-label" :for="'expense-' + index">
-                {{ category }}
-              </label>
+          <div class="ms-5">
+            <span class="fw-bold">지출 카테고리</span>
+            <div class="d-flex flex-row mt-1 mb-2">
+              <div
+                v-for="(category, index) in expenseCategory"
+                :key="'expense-' + index"
+                class="form-check"
+              >
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  :id="'expense-' + index"
+                  :value="category"
+                  v-model="selectedExpenseCategories"
+                />
+                <label class="form-check-label me-3" :for="'expense-' + index">
+                  {{ category }}
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -266,4 +283,8 @@ const goToAddPage = () => {
 };
 </script>
 
-<style scoped src="@/assets/common.css"></style>
+<style scoped>
+input[type='checkbox'] {
+  accent-color: green;
+}
+</style>
