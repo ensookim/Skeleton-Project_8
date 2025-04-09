@@ -336,6 +336,13 @@ function goToPage(page) {
   }
 }
 
+// 페이지 수 변경되면 1 페이지로 지정
+watch([filteredTransactions, totalPages], () => {
+  if (currentPage.value > totalPages.value) {
+    currentPage.value = 1;
+  }
+});
+
 const goToAddPage = () => {
   router.push('/transaction/add');
 };
