@@ -263,15 +263,21 @@ const getDateRange = () => {
   const now = new Date();
   if (selectedDateRange.value === 'option1') {
     // 최근 1주일
-    return new Date(now.setDate(now.getDate() - 7));
+    return { start: new Date(now.setDate(now.getDate() - 7)), end: new Date() };
   } else if (selectedDateRange.value === 'option2') {
     // 최근 1개월
-    return new Date(now.setMonth(now.getMonth() - 1));
+    return {
+      start: new Date(now.setMonth(now.getMonth() - 1)),
+      end: new Date(),
+    };
   } else if (selectedDateRange.value === 'option3') {
     // 최근 3개월
-    return new Date(now.setMonth(now.getMonth() - 3));
+    return {
+      start: new Date(now.setMonth(now.getMonth() - 3)),
+      end: new Date(),
+    };
   } else if (selectedDateRange.value === 'custom') {
-    // 직접 입력
+    // 직접 입력한 시작일, 종료일
     if (customStartDate.value && customEndDate.value) {
       return {
         start: new Date(customStartDate.value),
@@ -289,11 +295,8 @@ const filteredTransactions = computed(() => {
   const dateRange = getDateRange();
 
   return transactions.value.filter((transaction) => {
-    // 날짜 필터
+    //날짜 필터
     const transactionDate = new Date(transaction.date);
-    // const isDateMatch = dateRange
-    //   ? transactionDate >= dateRange && transactionDate <= new Date()
-    //   : true;
     const isDateMatch =
       dateRange && dateRange.start && dateRange.end
         ? transactionDate >= dateRange.start && transactionDate <= dateRange.end
