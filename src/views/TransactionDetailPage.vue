@@ -1,29 +1,65 @@
 <template>
-  <div class="container" v-if="transaction">
-    <h2>상세 내역</h2>
-    <div class="form-group">날짜: {{ transaction.date }}</div>
-    <div class="form-group">
-      유형:
-      {{ transaction.type === 'income' ? '수입' : '지출' }}
-    </div>
-    <div class="form-group">카테고리: {{ transaction.category }}</div>
-    <div class="form-group">금액: {{ transaction.amount }} 원</div>
-    <div class="form-group">메모: {{ transaction.memo }}</div>
-    <div class="form-group">
-      정기적인가요?
-      {{ transaction.isPeriodic ? '예' : '아니오' }}
-    </div>
+  <div class="container py-5" v-if="transaction">
+    <div class="card shadow p-4">
+      <h3 class="text-center mb-4">📄 상세 내역</h3>
 
-    <div class="btn-wrap">
-      <button class="btn left" @click="goBack">뒤로가기</button>
-      <button class="btn left" @click="editTransaction">수정하기</button>
-      <button class="btn right" @click="deleteTransaction">삭제하기</button>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">
+          <strong>날짜 : </strong> {{ transaction.date }}
+        </li>
+        <li class="list-group-item">
+          <strong>유형 : </strong>
+          <span
+            :class="
+              transaction.type === 'income' ? 'text-success' : 'text-danger'
+            "
+          >
+            {{ transaction.type === 'income' ? '수입' : '지출' }}
+          </span>
+        </li>
+        <li class="list-group-item">
+          <strong>카테고리 : </strong> {{ transaction.category }}
+        </li>
+        <li class="list-group-item">
+          <strong>금액 : </strong>
+          <span
+            :class="
+              transaction.type === 'income' ? 'text-success' : 'text-danger'
+            "
+          >
+            {{ transaction.amount.toLocaleString() }} 원
+          </span>
+        </li>
+        <li class="list-group-item">
+          <strong>메모 : </strong> {{ transaction.memo || '-' }}
+        </li>
+        <li class="list-group-item">
+          <strong>정기적인가요?</strong>
+          {{ transaction.isPeriodic ? '예' : '아니오' }}
+        </li>
+      </ul>
+
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-secondary" @click="goBack">
+          뒤로가기
+        </button>
+        <button class="btn btn-primary" @click="editTransaction">
+          수정하기
+        </button>
+        <button class="btn btn-danger" @click="deleteTransaction">
+          삭제하기
+        </button>
+      </div>
     </div>
   </div>
 
-  <div v-else class="not-found">
-    <div class="form-group">해당 거래 내역을 찾을 수 없습니다.</div>
-    <button class="btn left" @click="goBack">뒤로가기</button>
+  <div v-else class="container py-5">
+    <div class="card shadow p-4 text-center">
+      <h5>해당 거래 내역을 찾을 수 없습니다.</h5>
+      <button class="btn btn-outline-secondary mt-3" @click="goBack">
+        뒤로가기
+      </button>
+    </div>
   </div>
 </template>
 
@@ -41,7 +77,6 @@ const { transactions } = storeToRefs(store);
 const transactionId = route.params.id;
 const transaction = ref(null);
 
-// 거래 상세 정보 불러오기
 onMounted(async () => {
   await store.fetchTransactions();
   transaction.value = transactions.value.find(
@@ -59,9 +94,7 @@ const deleteTransaction = async () => {
   router.push('/transaction');
 };
 
-// 뒤로가기
 const goBack = () => {
   router.back();
 };
 </script>
-<style scoped src="@/assets/common.css"></style>
