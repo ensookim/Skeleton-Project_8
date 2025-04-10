@@ -10,7 +10,10 @@
         <p class="card-text">: {{ formatCurrency(currentExpense) }}</p>
         <p>
           <span class="text-muted me-2">전월 대비</span>
-
+          <span v-if="currentExpense - lastExpense === 0" style="color: blue">
+            <i class="fa-solid fa-equals"></i>
+            {{ formatCurrency(currentExpense - lastExpense) }}
+          </span>
           <span v-if="currentExpense - lastExpense > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
             {{ formatCurrency(currentExpense - lastExpense) }}
@@ -35,6 +38,10 @@
         <p class="card-text">: {{ formatCurrency(currentIncome) }}</p>
         <p>
           <span class="text-muted me-2">전월 대비</span>
+          <span v-if="currentIncome - lastIncome === 0" style="color: blue">
+            <i class="fa-solid fa-equals"></i>
+            {{ formatCurrency(currentIncome - lastIncome) }}
+          </span>
           <span v-if="currentIncome - lastIncome > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
             {{ formatCurrency(currentIncome - lastIncome) }}
