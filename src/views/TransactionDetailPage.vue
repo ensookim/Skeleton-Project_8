@@ -40,13 +40,17 @@
       </ul>
 
       <div class="d-flex justify-content-start gap-2 mt-4">
-        <button class="btn btn-outline-secondary" @click="goBack">
+        <button
+          class="btn btn-outline-secondary text-white"
+          style="background-color: gray"
+          @click="goBack"
+        >
           뒤로가기
         </button>
-        <button class="btn btn-primary" @click="editTransaction">
+        <button class="btn btn-primary text-white" @click="editTransaction">
           수정하기
         </button>
-        <button class="btn btn-danger" @click="deleteTransaction">
+        <button class="btn btn-danger text-white" @click="deleteTransaction">
           삭제하기
         </button>
       </div>
