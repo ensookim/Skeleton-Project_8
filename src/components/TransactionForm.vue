@@ -49,19 +49,24 @@
       </div>
 
       <div class="d-flex gap-2">
-        <button class="btn btn-success" type="submit">
+        <button
+          class="btn btn-secondary text-white"
+          type="button"
+          @click="goBack"
+          style="background-color: gray"
+        >
+          뒤로가기
+        </button>
+        <button class="btn btn-primary text-white" type="submit">
           {{ isEdit ? '수정하기' : '추가하기' }}
         </button>
         <button
           v-if="isEdit"
-          class="btn btn-danger"
+          class="btn btn-danger text-white"
           type="button"
           @click="onDelete"
         >
           삭제하기
-        </button>
-        <button class="btn btn-secondary" type="button" @click="goBack">
-          뒤로가기
         </button>
       </div>
     </form>

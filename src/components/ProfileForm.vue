@@ -8,7 +8,7 @@
       <label>이메일</label>
       <input v-model="localEmail" type="email" class="form-control" />
     </div>
-    <button type="submit" class="btn">저장하기</button>
+    <button type="submit" class="btn btn-primary text-white">저장하기</button>
   </form>
 </template>
 

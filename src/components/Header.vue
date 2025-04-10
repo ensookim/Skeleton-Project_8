@@ -2,7 +2,7 @@
   <header class="header">
     <div class="logo">
       <router-link to="/" class="logo-link">
-        <h3>💰 알뜰살뜰 가계부</h3>
+        <h3>💰 알뜰살뜰 가계부 💰</h3>
       </router-link>
     </div>
 
