@@ -11,10 +11,6 @@
         <i class="fas fa-list"></i>
         <span>전체 내역</span>
       </router-link>
-      <router-link to="/" class="menu-item">
-        <i class="fas fa-clock"></i>
-        <span>최근 내역</span>
-      </router-link>
       <router-link to="/report" class="menu-item">
         <i class="fa-solid fa-calendar"></i>
         <span>월별 분석</span>
