@@ -5,22 +5,23 @@
     </h3>
 
     <p class="d-flex justify-content-center m-3">
-      올해는&nbsp<span class="text-danger">{{ maxExpenseMonth }}월</span>에 가장
-      많이 썼어요!
+      올해는&nbsp;<span class="text-danger">{{ maxExpenseMonth }}월</span>에
+      가장 많이 썼어요!
     </p>
     <div class="my-5 mx-auto" style="width: 80%">
       <canvas id="expenseChart"></canvas>
     </div>
 
     <p class="d-flex justify-content-center m-3">
-      올해는&nbsp<span class="text-success">{{ maxIncomeMonth }}월</span>에 가장
-      많이 벌었어요!
+      올해는&nbsp;<span class="text-success">{{ maxIncomeMonth }}월</span>에
+      가장 많이 벌었어요!
     </p>
     <div class="my-5 mx-auto" style="width: 80%">
       <canvas id="incomeChart"></canvas>
     </div>
   </div>
 </template>
+
 <script setup>
 import { useReportStore } from '@/stores/report';
 import { onMounted, watch, computed } from 'vue';
@@ -41,6 +42,7 @@ const yearExpense = computed(() => [
   reportStore.NovExpense,
   reportStore.DecExpense,
 ]);
+
 const yearIncome = computed(() => [
   reportStore.JanIncome,
   reportStore.FebIncome,
@@ -56,20 +58,27 @@ const yearIncome = computed(() => [
   reportStore.DecIncome,
 ]);
 
+// 동일 값일 때 배열로 넣어서 조인
 const maxExpenseAmount = computed(() => Math.max(...yearExpense.value));
 const maxExpenseMonth = computed(() => {
-  const monthIndex = yearExpense.value.findIndex(
-    (expense) => expense === maxExpenseAmount.value
-  );
-  return monthIndex + 1;
+  const maxMonths = yearExpense.value
+    .map((expense, index) =>
+      expense === maxExpenseAmount.value ? index + 1 : null
+    )
+    .filter((month) => month !== null);
+  console.log('최대 지출 월:', maxMonths);
+  return maxMonths.length > 0 ? maxMonths.join(', ') : '없음';
 });
 
 const maxIncomeAmount = computed(() => Math.max(...yearIncome.value));
 const maxIncomeMonth = computed(() => {
-  const monthIndex = yearIncome.value.findIndex(
-    (income) => income === maxIncomeAmount.value
-  );
-  return monthIndex + 1;
+  const maxMonths = yearIncome.value
+    .map((income, index) =>
+      income === maxIncomeAmount.value ? index + 1 : null
+    )
+    .filter((month) => month !== null);
+  console.log('최대 수입 월:', maxMonths);
+  return maxMonths.length > 0 ? maxMonths.join(', ') : '없음';
 });
 
 let expenseChartInstance = null;
@@ -173,9 +182,7 @@ onMounted(async () => {
 });
 
 watch(
-  () => {
-    yearExpense, yearIncome;
-  },
+  () => [yearExpense.value, yearIncome.value],
   () => {
     createExpenseChart();
     createIncomeChart();
