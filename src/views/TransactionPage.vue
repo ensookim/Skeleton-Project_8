@@ -168,7 +168,7 @@
         </div>
       </form>
     </div>
-    <button @click="goToAddPage" class="btn">추가하기</button>
+    <button @click="goToAddPage" class="action-button mb-4">추가하기</button>
     <ul class="history-list">
       <li class="item header">
         <span class="col no">No.</span>
@@ -457,5 +457,17 @@ input[type='checkbox'] {
   background: #0d6efd;
   color: #fff;
   border-color: #0d6efd;
+}
+.action-button {
+  padding: 10px 24px;
+  border-radius: 9999px;
+  background-color: #fff;
+  font-weight: bold;
+  color: #4f46e5;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+.action-button:hover {
+  background-color: #f3f4f6;
 }
 </style>
