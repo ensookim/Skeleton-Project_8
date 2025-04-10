@@ -1,78 +1,52 @@
 <template>
   <div class="m-5 card rounded-4 p-4 shadow">
     <div class="clearfix">
-      <h1 class="mb-4 fw-bold float-start">
-        <i class="fa-solid fa-list"></i> 전체 내역
-      </h1>
+      <h1 class="fw-bold d-flex align-items-center">전체 내역</h1>
+      <br />
     </div>
-
-    <!-- Filter -->
-    <div class="container-fluid p-1">
-      <h5 class="fw-bold mb-3" style="color: #22c55e">
-        <i class="fa-solid fa-circle-check"></i> 거래 기간 선택
+    <!-- 거래 기간 선택 구간 -->
+    <div class="mb-3 p-3 border rounded bg-light">
+      <h5 class="fw-bold mb-4 text-success">
+        <i class="fa-solid fa-circle-check me-2"></i> 거래 기간 선택
       </h5>
-      <!-- 날짜 선택 radio -->
-      <form class="d-flex ms-3 mb-4">
-        <div class="form-check me-2">
+
+      <form class="d-flex flex-wrap gap-3 ms-2">
+        <div
+          class="form-check"
+          v-for="(label, idx) in [
+            '최근 1주일',
+            '최근 1개월',
+            '최근 3개월',
+            '직접 입력',
+          ]"
+          :key="idx"
+        >
           <input
             type="radio"
             class="form-check-input"
-            id="radio1"
-            name="category"
-            value="option1"
+            :id="'radio' + idx"
+            :value="'option' + (idx + 1)"
             v-model="selectedDateRange"
-            checked
+            :checked="idx === 0"
           />
-          <label class="form-check-label" for="radio1">최근 1주일</label>
-        </div>
-        <div class="form-check me-2">
-          <input
-            type="radio"
-            class="form-check-input"
-            id="radio2"
-            name="category"
-            value="option2"
-            v-model="selectedDateRange"
-          />
-          <label class="form-check-label" for="radio2">최근 1개월</label>
-        </div>
-        <div class="form-check me-2">
-          <input
-            type="radio"
-            class="form-check-input"
-            id="radio3"
-            name="category"
-            value="option3"
-            v-model="selectedDateRange"
-          />
-          <label class="form-check-label" for="radio3">최근 3개월</label>
-        </div>
-        <div class="form-check me-2">
-          <input
-            type="radio"
-            class="form-check-input"
-            id="radio4"
-            name="category"
-            value="custom"
-            v-model="selectedDateRange"
-          />
-          <label class="form-check-label" for="radio4">직접 입력</label>
+          <label class="form-check-label" :for="'radio' + idx">{{
+            label
+          }}</label>
         </div>
       </form>
-      <!-- 직접 선택 선택시 보이는 시작일 종료일 -->
+
       <div
         v-if="selectedDateRange === 'custom'"
-        class="d-flex align-items-center ms-3 mt-2 mb-3"
+        class="d-flex align-items-center gap-2 mt-3 ms-2"
       >
-        <label class="me-2 fw-bold">시작일: </label>
+        <label class="fw-bold">시작일:</label>
         <input
           type="date"
           v-model="customStartDate"
-          class="form-control me-3"
+          class="form-control"
           style="width: 200px"
         />
-
-        <label class="me-2 fw-bold">종료일: </label>
+        <label class="fw-bold">종료일:</label>
         <input
           type="date"
           v-model="customEndDate"
@@ -80,94 +54,67 @@
           style="width: 200px"
         />
       </div>
+    </div>
 
-      <!-- 카테고리 선택 select -->
-      <!-- <form>
-        <select
-          class="form-select me-2"
-          id="incomeCategory"
-          name="incomeCategory"
-          v-model="selectedIncomeCategory"
-        >
-          <option disabled selected>수입 카테고리 선택</option>
-          <option
-            v-for="(category, index) in incomeCategory[0]"
-            :key="index"
-            :value="category"
-          >
-            {{ category }}
-          </option>
-        </select>
-        <select
-          class="form-select"
-          id="expenseCategory"
-          name="expenseCategory"
-          v-model="selectedExpenseCategory"
-        >
-          <option disabled selected>지출 카테고리 선택</option>
-          <option
-            v-for="category in expenseCategory[0]"
-            :key="category"
-            :value="category"
-          >
-            {{ category }}
-          </option>
-        </select>
-      </form> -->
+    <!-- 거래 카테고리 선택 구간 -->
+    <div class="mb-5 p-3 border rounded bg-light">
+      <h5 class="fw-bold mb-4 text-success">
+        <i class="fa-solid fa-circle-check me-2"></i> 거래 카테고리 선택
+      </h5>
 
-      <!-- 카테고리 선택 checkbox -->
-      <form class="mb-4">
-        <h5 class="fw-bold mb-3" style="color: #22c55e">
-          <i class="fa-solid fa-circle-check"></i> 거래 카테고리 선택
-        </h5>
-
-        <div class="d-flex">
-          <div>
-            <span class="fw-bold mt-4 mb-3">수입 카테고리</span>
-            <div class="d-flex flex-row mt-1 mb-2">
-              <div
-                v-for="(category, index) in incomeCategory"
-                :key="'income-' + index"
-                class="form-check"
-              >
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  :id="'income-' + index"
-                  :value="category"
-                  v-model="selectedIncomeCategories"
-                />
-                <label class="form-check-label me-3" :for="'income-' + index">
-                  {{ category }}
-                </label>
-              </div>
-            </div>
+      <div class="mt-4 d-flex flex-wrap gap-4">
+        <!-- 수입 카테고리 -->
+        <div>
+          <div class="fw-bold mb-2 text-primary">
+            <i class="fa-solid fa-coins me-1"></i> 수입 카테고리
           </div>
-
-          <div class="ms-5">
-            <span class="fw-bold">지출 카테고리</span>
-            <div class="d-flex flex-row mt-1 mb-2">
-              <div
-                v-for="(category, index) in expenseCategory"
-                :key="'expense-' + index"
-                class="form-check"
-              >
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  :id="'expense-' + index"
-                  :value="category"
-                  v-model="selectedExpenseCategories"
-                />
-                <label class="form-check-label me-3" :for="'expense-' + index">
-                  {{ category }}
-                </label>
-              </div>
+          <div class="d-flex flex-wrap gap-2">
+            <div
+              v-for="(category, index) in incomeCategory"
+              :key="'income-' + index"
+              class="border rounded-pill px-3 py-2 bg-white shadow-sm"
+            >
+              <input
+                type="checkbox"
+                class="form-check-input me-2"
+                :id="'income-' + index"
+                :value="category"
+                v-model="selectedIncomeCategories"
+              />
+              <label class="form-check-label" :for="'income-' + index">
+                {{ category }}
+              </label>
             </div>
           </div>
         </div>
-      </form>
+
+        <!-- 지출 카테고리 -->
+        <div>
+          <div class="fw-bold mb-2 text-danger">
+            <i class="fa-solid fa-wallet me-1"></i> 지출 카테고리
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <div
+              v-for="(category, index) in expenseCategory"
+              :key="'expense-' + index"
+              class="border rounded-pill px-3 py-2 bg-white shadow-sm"
+            >
+              <input
+                type="checkbox"
+                class="form-check-input me-2"
+                :id="'expense-' + index"
+                :value="category"
+                v-model="selectedExpenseCategories"
+              />
+              <label class="form-check-label" :for="'expense-' + index">
+                {{ category }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <button @click="goToAddPage" class="action-button mb-4">추가하기</button>
     <ul class="history-list">
       <li class="item header">
