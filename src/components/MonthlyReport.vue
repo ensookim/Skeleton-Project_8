@@ -3,7 +3,7 @@
     <!-- 이번 달 총 지출 -->
     <div class="card-body d-flex flex-row rounded mx-2">
       <div>
-        <i class="fa-solid fa-minus bg-danger rounded-circle p-1"></i>
+        <i class="fa-solid fa-minus bg-danger rounded-circle p-1 me-2"></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 총 지출</h4>
