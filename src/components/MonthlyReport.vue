@@ -3,14 +3,17 @@
     <!-- 이번 달 총 지출 -->
     <div class="card-body d-flex flex-row rounded mx-2">
       <div>
-        <i class="fa-solid fa-minus bg-danger rounded-circle p-1"></i>
+        <i class="fa-solid fa-minus bg-danger rounded-circle p-1 me-2"></i>
       </div>
       <div>
         <h4 class="card-title">이번 달 총 지출</h4>
         <p class="card-text">: {{ formatCurrency(currentExpense) }}</p>
         <p>
           <span class="text-muted me-2">전월 대비</span>
-
+          <span v-if="currentExpense - lastExpense === 0" style="color: blue">
+            <i class="fa-solid fa-equals"></i>
+            {{ formatCurrency(currentExpense - lastExpense) }}
+          </span>
           <span v-if="currentExpense - lastExpense > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
             {{ formatCurrency(currentExpense - lastExpense) }}
@@ -35,6 +38,10 @@
         <p class="card-text">: {{ formatCurrency(currentIncome) }}</p>
         <p>
           <span class="text-muted me-2">전월 대비</span>
+          <span v-if="currentIncome - lastIncome === 0" style="color: blue">
+            <i class="fa-solid fa-equals"></i>
+            {{ formatCurrency(currentIncome - lastIncome) }}
+          </span>
           <span v-if="currentIncome - lastIncome > 0" style="color: green">
             <i class="fa-solid fa-arrow-up"> </i>
             {{ formatCurrency(currentIncome - lastIncome) }}
