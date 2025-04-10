@@ -130,7 +130,7 @@ const createExpenseCategoryChart = () => {
     expenseCategoryChartInstance.destroy();
   }
   expenseCategoryChartInstance = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: categoryStore.expenseCategory,
       datasets: [
@@ -162,7 +162,7 @@ const createIncomeCategoryChart = () => {
     incomeCategoryChartInstance.destroy();
   }
   incomeCategoryChartInstance = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: categoryStore.incomeCategory,
       datasets: [
