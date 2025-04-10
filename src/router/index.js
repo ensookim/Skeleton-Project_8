@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
+import HomePage from '@/pages/HomePage.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,42 +12,42 @@ const router = createRouter({
     {
       path: '/transaction',
       name: 'TransactionPage',
-      component: () => import('@/views/TransactionPage.vue'),
+      component: () => import('@/pages/TransactionPage.vue'),
     },
     // {
     //   path: '/transaction/:id',
     //   name: 'TransactionDetailPage',
-    //   component: () => import('@/views/TransactionDetailPage.vue'),
+    //   component: () => import('@/pages/TransactionDetailPage.vue'),
     // },
     {
       path: '/transaction/add',
       name: 'AddPage',
-      component: () => import('@/views/AddPage.vue'),
+      component: () => import('@/pages/AddPage.vue'),
     },
     {
       path: '/transaction/edit/:id',
       name: 'EditPage',
-      component: () => import('@/views/EditPage.vue'),
+      component: () => import('@/pages/EditPage.vue'),
     },
     {
       path: '/user/:id',
       name: 'ProfilePage',
-      component: () => import('@/views/ProfilePage.vue'),
+      component: () => import('@/pages/ProfilePage.vue'),
     },
     {
       path: '/user/edit/:id',
       name: 'ProfileEditPage',
-      component: () => import('@/views/ProfileEditPage.vue'),
+      component: () => import('@/pages/ProfileEditPage.vue'),
     },
     {
       path: '/report',
       name: 'ReportPage',
-      component: () => import('@/views/ReportPage.vue'),
+      component: () => import('@/pages/ReportPage.vue'),
     },
     {
       path: '/:paths(.*)*',
       name: 'NotFound',
-      component: () => import('@/views/NotFound.vue'),
+      component: () => import('@/pages/NotFound.vue'),
     },
   ],
 });
