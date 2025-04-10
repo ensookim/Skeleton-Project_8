@@ -1,11 +1,13 @@
 <template>
   <MonthlyReport />
-  <Report />
+  <CategoryReport />
+  <YearReport />
 </template>
 
 <script setup>
+import CategoryReport from '@/components/CategoryReport.vue';
 import MonthlyReport from '@/components/MonthlyReport.vue';
-import Report from '@/components/Report.vue';
+import YearReport from '@/components/YearReport.vue';
 import { useCategoryStore } from '@/stores/categoryStore';
 
 const categoryStore = useCategoryStore();
