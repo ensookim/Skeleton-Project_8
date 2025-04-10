@@ -60,7 +60,7 @@
     </div>
 
     <!-- 거래 카테고리 선택 구간 -->
-    <div class="mb-5 p-3 border rounded bg-light">
+    <div class="mb-4 p-3 border rounded bg-light">
       <h5 class="fw-bold mb-4 text-success">
         <i class="fa-solid fa-circle-check me-2"></i> 거래 카테고리 선택
       </h5>
