@@ -70,7 +70,7 @@
 
 <script setup>
 import { computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useCategoryStore } from '@/stores/categoryStore';
 import { useTransactionStore } from '@/stores/transactionStore';
 
@@ -112,8 +112,10 @@ const onSubmit = async () => {
       console.error('수정인데 form.id가 없습니다!', props.form);
       return;
     }
+    // await transactionStore.updateTransaction(props.form);
+    // router.push(`/transaction/${props.form.id}`); // 수정 후 상세페이지로
     await transactionStore.updateTransaction(props.form);
-    router.push(`/transaction/${props.form.id}`); // 수정 후 상세페이지로
+    router.push('/transaction'); // 상세 페이지 안 타고 그냥 목록으로
   } else {
     await transactionStore.addTransaction(props.form);
     router.push('/transaction'); // 추가 후 전체 목록으로
@@ -132,7 +134,16 @@ const onDelete = async () => {
   router.push('/transaction'); // 삭제 후 목록으로
 };
 
+// const goBack = () => {
+//   router.back();
+// };
+const route = useRoute();
+
 const goBack = () => {
-  router.back();
+  if (route.query.from === 'home') {
+    router.push({ path: '/', query: {} }); // 홈이면 모달 없이 돌아가도록
+  } else {
+    router.push('/transaction'); // 그 외엔 전체 내역으로
+  }
 };
 </script>

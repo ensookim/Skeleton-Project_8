@@ -77,7 +77,11 @@ const goToTransaction = () => {
 };
 const openModal = (trans) => {
   router.push({
-    query: { ...router.currentRoute.value.query, id: String(trans.id) },
+    query: {
+      ...router.currentRoute.value.query,
+      id: String(trans.id),
+      from: 'home',
+    },
   });
 };
 </script>

@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useTransactionStore } from '@/stores/transactionStore';
 
 const props = defineProps({
@@ -55,6 +55,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['close']);
 const router = useRouter();
+const route = useRoute();
 const store = useTransactionStore();
 
 function close() {
@@ -62,7 +63,10 @@ function close() {
 }
 
 function edit() {
-  router.push(`/transaction/edit/${props.trans.id}`);
+  router.push({
+    path: `/transaction/edit/${props.trans.id}`,
+    query: route.query,
+  });
 }
 
 async function del() {
