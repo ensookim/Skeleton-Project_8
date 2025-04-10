@@ -9,25 +9,13 @@
   "incomeCategory": [
     {
       "id": "1",
-      "name": [
-        "기타",
-        "용돈",
-        "월급",
-        "이자"
-      ]
+      "name": ["기타", "용돈", "월급", "이자"]
     }
   ],
   "expenseCategory": [
     {
       "id": "1",
-      "name": [
-        "공과금",
-        "교통비",
-        "문화생활",
-        "쇼핑",
-        "식비",
-        "정기구독"
-      ]
+      "name": ["공과금", "교통비", "문화생활", "쇼핑", "식비", "정기구독"]
     }
   ],
   "transaction": [
@@ -1527,18 +1515,9 @@
       "date": "2025-04-09",
       "type": "expense",
       "category": "교통비",
-      "amount": 106900,
+      "amount": 106984,
       "memo": "지하철",
       "isPeriodic": false
-    },
-    {
-      "date": "2025-04-10",
-      "amount": 4,
-      "type": "income",
-      "category": "기타",
-      "isPeriodic": false,
-      "memo": "테스트",
-      "id": "c-vHCfH"
     }
   ]
 }

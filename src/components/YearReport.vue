@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { useReportStore } from '@/stores/report';
+import { useReportStore } from '@/stores/reportStore';
 import { onMounted, watch, computed } from 'vue';
 import Chart from 'chart.js/auto';
 

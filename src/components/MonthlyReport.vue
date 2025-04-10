@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-import { useMonthlyStore } from '@/stores/monthly';
+import { useMonthlyStore } from '@/stores/monthlyStore';
 import { computed } from 'vue';
 
 const store = useMonthlyStore();
