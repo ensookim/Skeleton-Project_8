@@ -28,34 +28,6 @@ import { onMounted, watch, computed } from 'vue';
 import Chart from 'chart.js/auto';
 
 const reportStore = useReportStore();
-
-// 예시 데이터 설정
-reportStore.JanExpense = 200;
-reportStore.FebExpense = 200;
-reportStore.MarExpense = 150;
-reportStore.AprExpense = 100;
-reportStore.MayExpense = 250;
-reportStore.JunExpense = 300;
-reportStore.JulExpense = 200;
-reportStore.AugExpense = 100;
-reportStore.SepExpense = 150;
-reportStore.OctExpense = 200;
-reportStore.NovExpense = 300;
-reportStore.DecExpense = 400;
-
-reportStore.JanIncome = 300;
-reportStore.FebIncome = 250;
-reportStore.MarIncome = 200;
-reportStore.AprIncome = 350;
-reportStore.MayIncome = 400;
-reportStore.JunIncome = 450;
-reportStore.JulIncome = 300;
-reportStore.AugIncome = 250;
-reportStore.SepIncome = 350;
-reportStore.OctIncome = 400;
-reportStore.NovIncome = 500;
-reportStore.DecIncome = 600;
-
 const yearExpense = computed(() => [
   reportStore.JanExpense,
   reportStore.FebExpense,
@@ -85,7 +57,8 @@ const yearIncome = computed(() => [
   reportStore.NovIncome,
   reportStore.DecIncome,
 ]);
-// 동률시 배열 추가
+
+// 동일 값일 때 배열로 넣어서 조인
 const maxExpenseAmount = computed(() => Math.max(...yearExpense.value));
 const maxExpenseMonth = computed(() => {
   const maxMonths = yearExpense.value
