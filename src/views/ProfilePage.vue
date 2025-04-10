@@ -6,8 +6,15 @@
     <p><strong>이름 : </strong> {{ user?.name }}</p>
     <p><strong>이메일 : </strong> {{ user?.email }}</p>
     <div class="btn-wrap">
-      <router-link to="/" class="btn">뒤로가기</router-link>
-      <router-link :to="`/user/edit/${id}`" class="btn">수정하기</router-link>
+      <router-link
+        to="/"
+        class="btn btn-outline-secondary text-white"
+        style="background-color: gray"
+        >뒤로가기</router-link
+      >
+      <router-link :to="`/user/edit/${id}`" class="btn btn-primary text-white"
+        >수정하기</router-link
+      >
     </div>
   </div>
 </template>

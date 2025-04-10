@@ -69,7 +69,6 @@ export const useReportStore = defineStore('report', () => {
         );
 
         eval(`${months[i]}.value = currentTotal`);
-        console.log(`${months[i]}:`, eval(months[i]).value);
       }
     } catch (error) {
       console.error('에러 발생:', error.message);
@@ -112,7 +111,6 @@ export const useReportStore = defineStore('report', () => {
         );
 
         eval(`${months[i]}.value = currentTotal`);
-        console.log(`${months[i]}:`, eval(months[i]).value);
       }
     } catch (error) {
       console.error('에러 발생:', error.message);
