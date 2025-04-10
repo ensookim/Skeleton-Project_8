@@ -193,10 +193,7 @@
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <!-- 이전 그룹 -->
-        <li
-          class="page-item"
-          :class="{ disabled: currentPageGroup.value === 0 }"
-        >
+        <li class="page-item" v-if="hasPrevGroup">
           <button class="page-link" @click="goToPrevGroup">&laquo;</button>
         </li>
         <!-- 현재 그룹 페이지 번호 -->
@@ -209,13 +206,7 @@
           <button class="page-link" @click="goToPage(page)">{{ page }}</button>
         </li>
         <!-- 다음 그룹 -->
-        <li
-          class="page-item"
-          :class="{
-            disabled:
-              (currentPageGroup.value + 1) * pagesPerGroup >= totalPages.value,
-          }"
-        >
+        <li class="page-item" v-if="hasNextGroup">
           <button class="page-link" @click="goToNextGroup">&raquo;</button>
         </li>
       </ul>
@@ -378,6 +369,14 @@ watch([filteredTransactions, totalPages], () => {
     currentPage.value = 1;
   }
 });
+
+// 현재 페이지 그룹 번호에 따른 이전, 다음 그룹 있는지 확인
+// 이전 그룹 있는지
+const hasPrevGroup = computed(() => currentPageGroup.value > 0);
+// 다음 그룹 있는지
+const hasNextGroup = computed(
+  () => (currentPageGroup.value + 1) * pagesPerGroup < totalPages.value
+);
 
 const selectedTransaction = ref(null);
 
