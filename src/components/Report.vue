@@ -1,10 +1,13 @@
 <template>
-  <h3 class="mx-3">차트로 올해 수입/지출 살펴보기</h3>
-  <div class="my-5 mx-auto" style="width: 800px">
-    <canvas id="expenseChart"></canvas>
-  </div>
-  <div class="m-5 mx-auto" style="width: 800px">
-    <canvas id="incomeChart"></canvas>
+  <div class="m-5 card rounded-4 p-4 shadow">
+    <h3 class="mx-3 mt-2">차트로 올해 수입/지출 살펴보기</h3>
+
+    <div class="my-5 mx-auto" style="width: 80%">
+      <canvas id="expenseChart"></canvas>
+    </div>
+    <div class="m-5 mx-auto" style="width: 80%">
+      <canvas id="incomeChart"></canvas>
+    </div>
   </div>
   <!-- <table>
     <thead>
