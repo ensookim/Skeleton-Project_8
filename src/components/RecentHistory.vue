@@ -18,7 +18,7 @@
           <span class="col no">No.</span>
           <span class="col date">날짜</span>
           <span class="col amount">금액</span>
-          <span class="col category">카테고리</span>
+          <span class="col category">메모</span>
           <span class="col type">유형</span>
         </li>
         <TransactionItem
@@ -34,7 +34,9 @@
           <button class="action-button" @click="goToAdd">추가하기</button>
         </div>
         <div class="right-btn">
-          <button class="action-button" @click="goToTransaction">더보기</button>
+          <button class="action-button" @click="goToTransaction">
+            자세히 보기
+          </button>
         </div>
       </div>
     </div>

@@ -60,7 +60,7 @@
     </div>
 
     <!-- 거래 카테고리 선택 구간 -->
-    <div class="mb-5 p-3 border rounded bg-light">
+    <div class="mb-4 p-3 border rounded bg-light">
       <h5 class="fw-bold mb-4 text-success">
         <i class="fa-solid fa-circle-check me-2"></i> 거래 카테고리 선택
       </h5>
@@ -124,7 +124,7 @@
         <span class="col no">No.</span>
         <span class="col date">날짜</span>
         <span class="col amount">금액</span>
-        <span class="col category">카테고리</span>
+        <span class="col memo">메모</span>
         <span class="col type">유형</span>
       </li>
       <TransactionItem
@@ -143,10 +143,7 @@
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <!-- 이전 그룹 -->
-        <li
-          class="page-item"
-          :class="{ disabled: currentPageGroup.value === 0 }"
-        >
+        <li class="page-item" v-if="hasPrevGroup">
           <button class="page-link" @click="goToPrevGroup">&laquo;</button>
         </li>
         <!-- 현재 그룹 페이지 번호 -->
@@ -159,13 +156,7 @@
           <button class="page-link" @click="goToPage(page)">{{ page }}</button>
         </li>
         <!-- 다음 그룹 -->
-        <li
-          class="page-item"
-          :class="{
-            disabled:
-              (currentPageGroup.value + 1) * pagesPerGroup >= totalPages.value,
-          }"
-        >
+        <li class="page-item" v-if="hasNextGroup">
           <button class="page-link" @click="goToNextGroup">&raquo;</button>
         </li>
       </ul>
@@ -329,6 +320,14 @@ watch([filteredTransactions, totalPages], () => {
   }
 });
 
+// 현재 페이지 그룹 번호에 따른 이전, 다음 그룹 있는지 확인
+// 이전 그룹 있는지
+const hasPrevGroup = computed(() => currentPageGroup.value > 0);
+// 다음 그룹 있는지
+const hasNextGroup = computed(
+  () => (currentPageGroup.value + 1) * pagesPerGroup < totalPages.value
+);
+
 const selectedTransaction = ref(null);
 
 function openModal(trans) {
@@ -378,7 +377,7 @@ input[type='checkbox'] {
 .amount {
   width: 100px;
 }
-.category {
+.memo {
   width: 120px;
 }
 .type {

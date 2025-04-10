@@ -1,14 +1,14 @@
 <template>
   <li class="item" @click="$emit('click', trans)">
     <span class="col no">{{ index + 1 }}</span>
-    <span class="col date">{{ formattedDate }}</span>
+    <span class="col date">{{ trans.date }}</span>
     <span
       class="col amount"
       :class="trans.type === 'income' ? 'text-success' : 'text-danger'"
     >
       {{ formattedAmount }}
     </span>
-    <span class="col category">{{ trans.category }}</span>
+    <span class="col memo">{{ trans.memo }}</span>
     <span class="col type">
       <span :class="['badge', trans.type]">
         {{ trans.type === 'income' ? '수입' : '지출' }}
@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -27,15 +26,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['click']);
-// 삭제 예정
-// const router = useRouter();
-// const goToDetail = () => {
-//   router.push(`/transaction/${props.trans.id}`);
-// };
-
-const formattedDate = computed(() =>
-  new Date(props.trans.date).toLocaleDateString('ko-KR')
-);
 
 const formattedAmount = computed(
   () => props.trans.amount.toLocaleString('ko-KR') + '원'
@@ -67,7 +57,7 @@ const formattedAmount = computed(
   width: 100px;
   font-weight: bold;
 }
-.category {
+.memo {
   width: 120px;
 }
 .type {
