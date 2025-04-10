@@ -1,5 +1,4 @@
 <template>
-  <h1 class="m-3">월별 분석</h1>
   <MonthlyReport />
   <Report />
 </template>
