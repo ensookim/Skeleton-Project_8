@@ -36,10 +36,20 @@
           </li>
         </ul>
 
-        <div class="d-flex justify-content-end gap-2 mt-4">
-          <button class="btn btn-outline-secondary" @click="close">닫기</button>
-          <button class="btn btn-primary" @click="edit">수정하기</button>
-          <button class="btn btn-danger" @click="del">삭제하기</button>
+        <div class="d-flex justify-content-center gap-2 mt-4">
+          <button
+            class="btn btn-outline-secondary text-white"
+            style="background-color: gray"
+            @click="close"
+          >
+            닫기
+          </button>
+          <button class="btn btn-primary text-white" @click="edit">
+            수정하기
+          </button>
+          <button class="btn btn-danger text-white" @click="del">
+            삭제하기
+          </button>
         </div>
       </div>
     </div>
