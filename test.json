@@ -1,0 +1,113 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "홍길동",
+      "email": "hong@example.com"
+    }
+  ],
+  "incomeCategory": [
+    {
+      "id": "1",
+      "name": ["기타", "용돈", "월급", "이자"]
+    }
+  ],
+  "expenseCategory": [
+    {
+      "id": "1",
+      "name": ["공과금", "교통비", "문화생활", "쇼핑", "식비", "정기구독"]
+    }
+  ],
+  "transaction": [
+    {
+      "id": "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+      "userId": "1",
+      "date": "2024-12-15",
+      "type": "income",
+      "category": "기타",
+      "amount": 50000,
+      "memo": "소소한 수입",
+      "isPeriodic": false
+    },
+    {
+      "id": "2b3c4d5e-6789-01bc-def2-34567890abcd",
+      "userId": "1",
+      "date": "2024-12-20",
+      "type": "expense",
+      "category": "식비",
+      "amount": 30000,
+      "memo": "저녁 외식",
+      "isPeriodic": false
+    },
+    {
+      "id": "3c4d5e6f-7890-12cd-ef34-567890abcdef",
+      "userId": "1",
+      "date": "2025-03-05",
+      "type": "income",
+      "category": "월급",
+      "amount": 2000000,
+      "memo": "3월 급여",
+      "isPeriodic": true
+    },
+    {
+      "id": "4d5e6f7g-8901-23de-f456-7890abcdef12",
+      "userId": "1",
+      "date": "2025-03-10",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 80000,
+      "memo": "영화 관람",
+      "isPeriodic": false
+    },
+    {
+      "id": "5e6f7g8h-9012-34ef-g567-890abcdef123",
+      "userId": "1",
+      "date": "2025-03-15",
+      "type": "expense",
+      "category": "교통비",
+      "amount": 50000,
+      "memo": "버스비",
+      "isPeriodic": false
+    },
+    {
+      "id": "6f7g8h9i-0123-45fg-h678-90abcdef1234",
+      "userId": "1",
+      "date": "2025-04-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 2000000,
+      "memo": "4월 급여",
+      "isPeriodic": true
+    },
+    {
+      "id": "7g8h9i0j-1234-56gh-i789-0abcdef12345",
+      "userId": "1",
+      "date": "2025-04-02",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 12000,
+      "memo": "넷플릭스",
+      "isPeriodic": true
+    },
+    {
+      "id": "8h9i0j1k-2345-67hi-j890-abcdef123456",
+      "userId": "1",
+      "date": "2025-04-05",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 15000,
+      "memo": "음악 스트리밍",
+      "isPeriodic": false
+    },
+    {
+      "id": "9i0j1k2l-3456-78ij-k901-bcdef1234567",
+      "userId": "1",
+      "date": "2025-04-09",
+      "type": "expense",
+      "category": "식비",
+      "amount": 45000,
+      "memo": "점심 도시락",
+      "isPeriodic": false
+    }
+  ]
+}
