@@ -1,5 +1,5 @@
 <template>
-  <li class="item" @click="goToDetail">
+  <li class="item" @click="$emit('click', trans)">
     <span class="col no">{{ index + 1 }}</span>
     <span class="col date">{{ formattedDate }}</span>
     <span
@@ -21,16 +21,17 @@
 import { useRouter } from 'vue-router';
 import { computed } from 'vue';
 
-const router = useRouter();
-
 const props = defineProps({
   trans: Object,
   index: Number,
 });
 
-const goToDetail = () => {
-  router.push(`/transaction/${props.trans.id}`);
-};
+const emit = defineEmits(['click']);
+// 삭제 예정
+// const router = useRouter();
+// const goToDetail = () => {
+//   router.push(`/transaction/${props.trans.id}`);
+// };
 
 const formattedDate = computed(() =>
   new Date(props.trans.date).toLocaleDateString('ko-KR')

@@ -168,7 +168,7 @@
         </div>
       </form>
     </div>
-    <button @click="goToAddPage" class="btn">추가하기</button>
+    <button @click="goToAddPage" class="action-button mb-4">추가하기</button>
     <ul class="history-list">
       <li class="item header">
         <span class="col no">No.</span>
@@ -182,8 +182,14 @@
         :key="trans.id"
         :trans="trans"
         :index="index"
+        @click="openModal"
       />
     </ul>
+    <TransactionDetailModal
+      v-if="selectedTransaction"
+      :trans="selectedTransaction"
+      @close="closeModal"
+    />
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <!-- 이전 그룹 -->
@@ -224,6 +230,7 @@ import { useTransactionStore } from '@/stores/transactionStore';
 import { storeToRefs } from 'pinia';
 import { ref, computed, watch } from 'vue';
 import { useCategoryStore } from '@/stores/categoryStore';
+import TransactionDetailModal from '@/components/TransactionDetailModal.vue';
 
 const router = useRouter();
 const store = useTransactionStore();
@@ -372,6 +379,15 @@ watch([filteredTransactions, totalPages], () => {
   }
 });
 
+const selectedTransaction = ref(null);
+
+function openModal(trans) {
+  selectedTransaction.value = trans;
+}
+function closeModal() {
+  selectedTransaction.value = null;
+}
+
 const goToAddPage = () => {
   router.push('/transaction/add');
 };
@@ -441,5 +457,18 @@ input[type='checkbox'] {
   background: #0d6efd;
   color: #fff;
   border-color: #0d6efd;
+}
+.action-button {
+  padding: 10px 24px;
+  border-radius: 9999px;
+  background-color: #fff;
+  font-weight: bold;
+  color: #4f46e5;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.action-button:hover {
+  background-color: #f3f4f6;
 }
 </style>
