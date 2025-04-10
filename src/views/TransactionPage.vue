@@ -182,8 +182,14 @@
         :key="trans.id"
         :trans="trans"
         :index="index"
+        @click="openModal"
       />
     </ul>
+    <TransactionDetailModal
+      v-if="selectedTransaction"
+      :trans="selectedTransaction"
+      @close="closeModal"
+    />
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
         <!-- 이전 그룹 -->
@@ -224,6 +230,7 @@ import { useTransactionStore } from '@/stores/transactionStore';
 import { storeToRefs } from 'pinia';
 import { ref, computed, watch } from 'vue';
 import { useCategoryStore } from '@/stores/categoryStore';
+import TransactionDetailModal from '@/components/TransactionDetailModal.vue';
 
 const router = useRouter();
 const store = useTransactionStore();
@@ -371,6 +378,15 @@ watch([filteredTransactions, totalPages], () => {
     currentPage.value = 1;
   }
 });
+
+const selectedTransaction = ref(null);
+
+function openModal(trans) {
+  selectedTransaction.value = trans;
+}
+function closeModal() {
+  selectedTransaction.value = null;
+}
 
 const goToAddPage = () => {
   router.push('/transaction/add');
