@@ -174,7 +174,7 @@
         <span class="col no">No.</span>
         <span class="col date">날짜</span>
         <span class="col amount">금액</span>
-        <span class="col category">카테고리</span>
+        <span class="col memo">메모</span>
         <span class="col type">유형</span>
       </li>
       <TransactionItem
@@ -428,7 +428,7 @@ input[type='checkbox'] {
 .amount {
   width: 100px;
 }
-.category {
+.memo {
   width: 120px;
 }
 .type {

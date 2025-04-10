@@ -8,7 +8,7 @@
     >
       {{ formattedAmount }}
     </span>
-    <span class="col category">{{ trans.category }}</span>
+    <span class="col memo">{{ trans.memo }}</span>
     <span class="col type">
       <span :class="['badge', trans.type]">
         {{ trans.type === 'income' ? '수입' : '지출' }}
@@ -57,7 +57,7 @@ const formattedAmount = computed(
   width: 100px;
   font-weight: bold;
 }
-.category {
+.memo {
   width: 120px;
 }
 .type {
