@@ -47,7 +47,39 @@
           />
           <label class="form-check-label" for="radio3">최근 3개월</label>
         </div>
+        <div class="form-check me-2">
+          <input
+            type="radio"
+            class="form-check-input"
+            id="radio4"
+            name="category"
+            value="custom"
+            v-model="selectedDateRange"
+          />
+          <label class="form-check-label" for="radio4">직접 입력</label>
+        </div>
       </form>
+      <!-- 직접 선택 선택시 보이는 시작일 종료일 -->
+      <div
+        v-if="selectedDateRange === 'custom'"
+        class="d-flex align-items-center ms-3 mt-2 mb-3"
+      >
+        <label class="me-2 fw-bold">시작일: </label>
+        <input
+          type="date"
+          v-model="customStartDate"
+          class="form-control me-3"
+          style="width: 200px"
+        />
+
+        <label class="me-2 fw-bold">종료일: </label>
+        <input
+          type="date"
+          v-model="customEndDate"
+          class="form-control"
+          style="width: 200px"
+        />
+      </div>
 
       <!-- 카테고리 선택 select -->
       <!-- <form>
@@ -154,31 +186,31 @@
     </ul>
     <nav class="d-flex mt-3 mb-3 justify-content-center">
       <ul class="pagination">
-        <li class="page-item">
-          <button
-            class="page-link"
-            aria-label="Previous"
-            @click="goToPage(currentPage - 1)"
-          >
-            <span aria-hidden="true">&laquo;</span>
-          </button>
-        </li>
+        <!-- 이전 그룹 -->
         <li
           class="page-item"
-          v-for="page in totalPages"
+          :class="{ disabled: currentPageGroup.value === 0 }"
+        >
+          <button class="page-link" @click="goToPrevGroup">&laquo;</button>
+        </li>
+        <!-- 현재 그룹 페이지 번호 -->
+        <li
+          class="page-item"
+          v-for="page in visiblePages"
           :key="page"
           :class="{ active: page === currentPage }"
         >
           <button class="page-link" @click="goToPage(page)">{{ page }}</button>
         </li>
-        <li class="page-item">
-          <button
-            class="page-link"
-            aria-label="Next"
-            @click="goToPage(currentPage + 1)"
-          >
-            <span aria-hidden="true">&raquo;</span>
-          </button>
+        <!-- 다음 그룹 -->
+        <li
+          class="page-item"
+          :class="{
+            disabled:
+              (currentPageGroup.value + 1) * pagesPerGroup >= totalPages.value,
+          }"
+        >
+          <button class="page-link" @click="goToNextGroup">&raquo;</button>
         </li>
       </ul>
     </nav>
@@ -206,6 +238,11 @@ const { incomeCategory, expenseCategory } = storeToRefs(categoryStore);
 
 const selectedIncomeCategories = ref([]);
 const selectedExpenseCategories = ref([]);
+// 직접 입력한 시작일, 종료일 기본값 오늘
+const today = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD' 형태
+const customStartDate = ref(today);
+const customEndDate = ref(today);
+
 const selectedDateRange = ref('option1'); // 기본값: 최근 1주일
 
 // 카테고리 데이터가 로드된 후 초기화
@@ -227,13 +264,29 @@ const getDateRange = () => {
   const now = new Date();
   if (selectedDateRange.value === 'option1') {
     // 최근 1주일
-    return new Date(now.setDate(now.getDate() - 7));
+    return { start: new Date(now.setDate(now.getDate() - 7)), end: new Date() };
   } else if (selectedDateRange.value === 'option2') {
     // 최근 1개월
-    return new Date(now.setMonth(now.getMonth() - 1));
+    return {
+      start: new Date(now.setMonth(now.getMonth() - 1)),
+      end: new Date(),
+    };
   } else if (selectedDateRange.value === 'option3') {
     // 최근 3개월
-    return new Date(now.setMonth(now.getMonth() - 3));
+    return {
+      start: new Date(now.setMonth(now.getMonth() - 3)),
+      end: new Date(),
+    };
+  } else if (selectedDateRange.value === 'custom') {
+    // 직접 입력한 시작일, 종료일
+    if (customStartDate.value && customEndDate.value) {
+      return {
+        start: new Date(customStartDate.value),
+        end: new Date(customEndDate.value),
+      };
+    } else {
+      return null;
+    }
   }
   return null;
 };
@@ -243,12 +296,12 @@ const filteredTransactions = computed(() => {
   const dateRange = getDateRange();
 
   return transactions.value.filter((transaction) => {
-    // 날짜 필터
+    //날짜 필터
     const transactionDate = new Date(transaction.date);
-    const isDateMatch = dateRange
-      ? transactionDate >= dateRange && transactionDate <= new Date()
-      : true;
-
+    const isDateMatch =
+      dateRange && dateRange.start && dateRange.end
+        ? transactionDate >= dateRange.start && transactionDate <= dateRange.end
+        : true;
     // 카테고리 필터
     const isIncomeCategoryMatch = selectedIncomeCategories.value.includes(
       transaction.category
@@ -264,6 +317,8 @@ const filteredTransactions = computed(() => {
 // 페이징 관련
 const currentPage = ref(1);
 const itemsPerPage = 10;
+// 최대 페이지 수 10개
+const pagesPerGroup = 10;
 
 // Math.ceil 올림 함수 transaction 갯수 / 10 으로 페이지 수 정함
 const totalPages = computed(() =>
@@ -277,12 +332,45 @@ const paginationTransactions = computed(() => {
   return filteredTransactions.value.slice(start, end);
 });
 
+//Math.floor 버림 함수
+const currentPageGroup = computed(() =>
+  Math.floor((currentPage.value - 1) / pagesPerGroup)
+);
+// 페이지 그룹
+const visiblePages = computed(() => {
+  const start = currentPageGroup.value * pagesPerGroup + 1;
+  const end = Math.min(start + pagesPerGroup - 1, totalPages.value);
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+});
+
 // 페이지 이동
 function goToPage(page) {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
   }
 }
+
+// 이전 페이지 그룹
+function goToPrevGroup() {
+  const prevGroupStart = (currentPageGroup.value - 1) * pagesPerGroup + 1;
+  if (prevGroupStart >= 1) {
+    currentPage.value = prevGroupStart;
+  }
+}
+// 다음 페이지 그룹
+function goToNextGroup() {
+  const nextGroupStart = (currentPageGroup.value + 1) * pagesPerGroup + 1;
+  if (nextGroupStart <= totalPages.value) {
+    currentPage.value = nextGroupStart;
+  }
+}
+
+// 페이지 수 변경되면 1 페이지로 지정
+watch([filteredTransactions, totalPages], () => {
+  if (currentPage.value > totalPages.value) {
+    currentPage.value = 1;
+  }
+});
 
 const goToAddPage = () => {
   router.push('/transaction/add');
