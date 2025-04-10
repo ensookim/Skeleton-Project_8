@@ -10,7 +10,8 @@
         <i class="fa-solid fa-circle-check me-2"></i> 거래 기간 선택
       </h5>
 
-      <form class="d-flex flex-wrap gap-3 ms-2">
+      <!-- 날짜 선택 radio -->
+      <form class="d-flex flex-wrap gap-3 ms-2 mb-2">
         <div
           class="form-check"
           v-for="(label, idx) in [
@@ -25,7 +26,7 @@
             type="radio"
             class="form-check-input"
             :id="'radio' + idx"
-            :value="'option' + (idx + 1)"
+            :value="idx === 3 ? 'custom' : 'option' + (idx + 1)"
             v-model="selectedDateRange"
             :checked="idx === 0"
           />
@@ -35,9 +36,10 @@
         </div>
       </form>
 
+      <!-- 직접 입력한 날짜 구간 -->
       <div
         v-if="selectedDateRange === 'custom'"
-        class="d-flex align-items-center gap-2 mt-3 ms-2"
+        class="d-flex align-items-center gap-2 mt-3 ms-2 mb-3"
       >
         <label class="fw-bold">시작일:</label>
         <input
@@ -46,6 +48,7 @@
           class="form-control"
           style="width: 200px"
         />
+
         <label class="fw-bold">종료일:</label>
         <input
           type="date"
