@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-backdrop" @click.self="close">
+  <div class="modal-backdrop" @click.self="close" v-if="trans">
     <div class="modal-container">
       <div class="card shadow p-4 rounded-4">
         <h3 class="mb-4">📄 상세 내역</h3>

@@ -14,11 +14,11 @@ const router = createRouter({
       name: 'TransactionPage',
       component: () => import('@/views/TransactionPage.vue'),
     },
-    {
-      path: '/transaction/:id',
-      name: 'TransactionDetailPage',
-      component: () => import('@/views/TransactionDetailPage.vue'),
-    },
+    // {
+    //   path: '/transaction/:id',
+    //   name: 'TransactionDetailPage',
+    //   component: () => import('@/views/TransactionDetailPage.vue'),
+    // },
     {
       path: '/transaction/add',
       name: 'AddPage',

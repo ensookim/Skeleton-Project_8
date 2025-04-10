@@ -26,6 +26,7 @@
           :key="trans.id"
           :trans="trans"
           :index="index"
+          @click="openModal"
         />
       </ul>
       <div class="mt-4 button-group">
@@ -73,6 +74,11 @@ const goToAdd = () => {
 };
 const goToTransaction = () => {
   router.push('/transaction');
+};
+const openModal = (trans) => {
+  router.push({
+    query: { ...router.currentRoute.value.query, id: String(trans.id) },
+  });
 };
 </script>
 
