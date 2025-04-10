@@ -466,6 +466,7 @@ input[type='checkbox'] {
   color: #4f46e5;
   border: 1px solid #d1d5db;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 .action-button:hover {
   background-color: #f3f4f6;
