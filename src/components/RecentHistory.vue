@@ -34,7 +34,9 @@
           <button class="action-button" @click="goToAdd">추가하기</button>
         </div>
         <div class="right-btn">
-          <button class="action-button" @click="goToTransaction">더보기</button>
+          <button class="action-button" @click="goToTransaction">
+            자세히 보기
+          </button>
         </div>
       </div>
     </div>
